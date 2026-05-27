@@ -1,0 +1,8 @@
+{
+  "name": "journalism-core-tw",
+  "version": "0.7.0",
+  "description": "新聞工作核心技能的繁體中文/台灣在地化版本。改寫自 upstream journalism-core (jamditis/claude-skills-journalism)。將美國 FOIA 法規替換為《政府資訊公開法》申請流程,AP Style 替換為台灣媒體編務慣例,Gmail/Yahoo/Outlook bulk-sender 規範保留 (技術標準全球通用),社群平台分析改以 Threads / Dcard / PTT / LINE / Facebook 為主。所有 skill 加 -tw 後綴,可與英文版並存。目前已含 7 個 skill:foia-requests-tw、ai-writing-detox-tw、newsroom-style-tw、fact-check-workflow-tw、source-verification-tw、interview-prep-tw、social-media-intelligence-tw,其餘 skill 將陸續在地化。",
+  "author": {
+    "name": "bonjour@goskinow.co"
+  }
+}
