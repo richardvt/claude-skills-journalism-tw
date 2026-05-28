@@ -1,6 +1,6 @@
 {
   "name": "journalism-core-tw",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "新聞工作核心技能的繁體中文/台灣在地化版本 (production-ready)。完整在地化 upstream journalism-core 的 13 個 skill,經乾淨環境端到端壓力測試。將美國 FOIA、AP Style、Gmail bulk sender、美國社群平台等替換為台灣《政府資訊公開法》、台灣媒體編務慣例、台灣社群平台 (Threads/PTT/Dcard/LINE/FB)、台灣法律框架。所有 skill 加 -tw 後綴,可與英文版並存。13 個 skill 涵蓋完整新聞生命週期:foia-requests-tw、source-verification-tw、social-media-intelligence-tw、interview-prep-tw、interview-transcription-tw、fact-check-workflow-tw、ai-writing-detox-tw、newsroom-style-tw、crisis-communications-tw、data-journalism-tw、editorial-workflow-tw、newsletter-publishing-tw、story-pitch-tw。",
   "author": {
     "name": "bonjour@goskinow.co"

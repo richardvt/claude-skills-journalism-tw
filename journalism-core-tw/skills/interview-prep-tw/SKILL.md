@@ -377,7 +377,7 @@ description: 台灣新聞採訪準備工作流程 (繁體中文/台灣專用版,
 
 ## 七、追蹤 protocol
 
-> 錄音備份、轉錄工具、引語驗證之機制請參考 `interview-transcription-tw`(本 plugin 將來在地化項目)。本節聚焦**訪後編輯流程**。
+> 錄音備份、轉錄工具、引語驗證之機制請參考 `interview-transcription-tw`。本節聚焦**訪後編輯流程**。
 
 ### 即時(當日)
 - [ ] 備份錄音(雲端 + 本機,**至少兩份**)
@@ -608,7 +608,7 @@ PR 公關常代發言。**直接面對當事人**:
 | 訪前需查證受訪者公開資料 | `source-verification-tw` | §十一訪談前公開資料查證 |
 | 訪前需取得機關文件(政資法申請) | `foia-requests-tw` | §10 應載事項 + §22 工本費減免 |
 | 訪後將引語送查核 | `fact-check-workflow-tw` | §二主張提取、§三~五查證與評等 |
-| 訪後處理錄音轉逐字稿 | `interview-transcription-tw`(本 plugin 將來在地化) | — |
+| 訪後處理錄音轉逐字稿 | `interview-transcription-tw` | — |
 | 撰稿前去除訪談稿之 AI 味與口語冗詞 | `ai-writing-detox-tw` | §三句型套語、§六新聞文體 |
 | 引述格式、不具名來源規範、引述動詞 | `newsroom-style-tw` | §八引述動詞、§四職稱 |
 | 涉妨害名譽風險 | `fact-check-workflow-tw` + 法務 | §九法律風險 |
@@ -678,7 +678,7 @@ PR 公關常代發言。**直接面對當事人**:
 
 **版本說明**
 
-- 版本:1.0.0
+- 版本:1.0.1
 - 截至:2026-05-28
 - 改寫自:upstream `journalism-core/interview-prep` (jamditis/claude-skills-journalism)
 - 在地化重點:

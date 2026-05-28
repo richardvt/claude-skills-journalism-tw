@@ -38,6 +38,23 @@ description: 台灣新聞來源驗證與數位內容查證工作流程 (繁體�
 | **F - Find better coverage** | 找更好的報導 | 其他可信來源怎麼說? |
 | **T - Trace claims** | 溯源 | 找到主張的**原始來源**,不要二手轉述 |
 
+### 輸入 / 輸出與信心分級
+
+每次驗證都應留下可追溯輸出,避免把「感覺可疑」寫成結論。
+
+| 欄位 | 必填內容 |
+|---|---|
+| 驗證對象 | URL、截圖、原始檔、帳號 ID、收到時間 |
+| 方法 | SIFT 步驟、反向圖搜、C2PA、偵測器、聯絡來源 |
+| 證據 | 可重查連結、截圖、hash、存檔網址、聯絡紀錄 |
+| 限制 | 無法取得原始檔、平台剝 metadata、來源拒答等 |
+| 判斷 | `可確認` / `疑似` / `無法判定` / `不建議引用` |
+
+**信心分級**:
+- **高**:原始來源 + 獨立旁證 + 可重現證據一致
+- **中**:多個外部訊號一致,但缺原始檔或直接來源
+- **低**:僅有自動工具、肉眼判讀或二手截圖
+
 ### 來源可信度 checklist
 
 ```markdown
@@ -72,7 +89,7 @@ description: 台灣新聞來源驗證與數位內容查證工作流程 (繁體�
 
 ## 二、社群帳號驗證(台灣平台)
 
-> **若需深度 OSINT 追蹤協同操作、敘事追蹤、跨平台分析**,請進一步使用 `social-media-intelligence-tw`(本 plugin 將來在地化項目)。本節聚焦「**引述前該驗證**」的快速判斷。
+> **若需深度 OSINT 追蹤協同操作、敘事追蹤、跨平台分析**,請進一步使用 `social-media-intelligence-tw`。本節聚焦「**引述前該驗證**」的快速判斷。
 
 ### 帳號驗證 checklist(通用)
 
@@ -111,7 +128,7 @@ description: 台灣新聞來源驗證與數位內容查證工作流程 (繁體�
 |---|---|---|
 | **Threads** | Z 世代/即時新聞擴散主場,2024 起爆紅 | 帳號創立日(2023 後普遍開放);與 IG 連動但獨立經營;**追蹤關係不對稱**(無「好友」概念) |
 | **PTT** | 中年男性/政治、3C、股票 | **看 ID 註冊日**(`/help` 看註冊年份);看發文歷史(`/W` 顯示文章/推噓);**新註冊 ID 在政治板發文要警覺** |
-| **Dcard** | 大學生/年輕女性/校園話題 | **校園認證**(有畢業學校資訊);**主題板偏向偏輕);爆紅文章可能來自匿名洩漏需驗證 |
+| **Dcard** | 大學生/年輕女性/校園話題 | **校園認證**(有畢業學校資訊);**主題板偏向輕量 / 生活**;爆紅文章可能來自匿名洩漏需驗證 |
 | **Facebook** | 全年齡層/政治、地方新聞、社團 | **個人檔案**:朋友數、共同朋友、過往貼文;**粉專**:認證 ✅ 標記;**社團**:管理員身分、社團成立日 |
 | **LINE** | 全年齡層/即時通訊、長輩、群組轉傳 | **無公開個人檔案**,難以驗證;LINE 群組轉傳訊息要先**追溯來源截圖**;LINE OpenChat 有公開資訊 |
 | **X (Twitter)** | 媒體記者、學術圈、國際新聞 | **藍勾勾自 2023 改成付費認證**,非身分驗證;改看帳號創立日、follower 品質;blue check ≠ 可信 |
@@ -234,26 +251,28 @@ description: 台灣新聞來源驗證與數位內容查證工作流程 (繁體�
 
 **Coalition for Content Provenance and Authenticity (C2PA)** 標準在影像、音訊、影片檔案內嵌**加密 manifest**,描述其來源與編輯歷史。
 
-**2026 年 5 月已採用 C2PA 之主要對象**:
+**C2PA 採用狀態核對清單(以 2026 年 5 月為起點)**:
+
+下列清單是查核時的**起點**,不是永久事實。C2PA 支援、韌體、平台 metadata 保留政策與廠商命名會快速變動;使用前應重新查官方頁、Content Credentials Verify、Content Authenticity Initiative 公告與廠商支援文件,並在報告中註明 `last_checked` 日期。
 
 **生成式工具**:
-- OpenAI DALL-E 3、Sora 2(自動寫入 Credentials;Sora 2 另有可見浮水印)
-- Adobe Photoshop / Lightroom / Firefly
-- Microsoft Bing Image Creator / Designer / Copilot
-- Google Gemini / Nano Banana Pro(C2PA + SynthID)
+- OpenAI DALL-E / Sora 系列(查官方 Content Credentials 說明;部分輸出另有可見浮水印)
+- Adobe Photoshop / Lightroom / Firefly(查 Content Credentials 設定是否啟用)
+- Microsoft Bing Image Creator / Designer / Copilot(查當前輸出格式與憑證保留)
+- Google Gemini / SynthID 相關工具(查官方 C2PA / SynthID 支援範圍)
 
 **相機(拍攝端簽章)**:
 - Leica M11-P、SL3-S
 - Sony Alpha 1 II、Alpha 9 III
 - Canon EOS R1、R5 Mark II(2025 韌體)
-- Google Pixel 10(內建)
+- Google Pixel 系列新機(查機型、OS 版本與相機 app 支援)
 
 **已知有問題的相機**:
-- Nikon Z6 III(2025 簽章金鑰漏洞,服務暫停;查核時應謹慎對待 Z6 III 的 C2PA 主張)
+- Nikon Z6 III 曾有簽章金鑰漏洞爭議;查核時應確認廠商最新修補狀態,不要只看「有效簽章」四字。
 
 **新聞機構**(製作端):
 - BBC、NYT、AP、Reuters 為 CAI/C2PA 會員
-- 台灣新聞機構**目前尚未廣泛採用** C2PA(2026 年 5 月)
+- 台灣新聞機構採用狀態需逐家確認;不可概括假設已導入或未導入。
 
 ### 驗證工具
 
@@ -263,6 +282,15 @@ description: 台灣新聞來源驗證與數位內容查證工作流程 (繁體�
 | **Adobe Content Authenticity Inspector** | 同上,Adobe 出品 |
 | **Digimarc C2PA 瀏覽器擴充** | 瀏覽網頁時即時偵測 |
 
+### 高變動工具狀態核對
+
+| 項目 | 使用前核對 | 不可直接假設 |
+|---|---|---|
+| C2PA 支援機型 / 工具 | 官方支援頁、韌體版本、Verify 結果 | 有 C2PA = 一定真、無 C2PA = 一定假 |
+| AI 偵測器 | 服務是否仍運作、模型更新日期、免費額度 | 單一分數可當結論 |
+| 社群 metadata | 平台是否保留、下載檔是否為原始檔 | 截圖仍保留原始 metadata |
+| 調查局 / 政府工具 | 是否有正式受理管道與案件門檻 | 記者可直接取得 API 或內部報告 |
+
 ### 已知限制
 
 - **截圖會剝除 hard binding manifest**(perceptual fingerprint 軟綁定可能仍可恢復)
@@ -271,6 +299,8 @@ description: 台灣新聞來源驗證與數位內容查證工作流程 (繁體�
 - **簽章金鑰可能被入侵**(Nikon 2025 案)— 「有效簽章」可能背後是上游被駭
 
 ### Layer 2:自動偵測工具(2026 年 5 月狀態)
+
+下表是 2026 年 5 月的工作清單。使用前先打開服務、確認價格 / 配額 / 上傳限制與隱私條款;涉及未公開影像或受害者影像時,不要上傳到不明第三方服務。
 
 | 工具 | 狀態 | 定價 | 用途 |
 |---|---|---|---|
@@ -306,6 +336,19 @@ description: 台灣新聞來源驗證與數位內容查證工作流程 (繁體�
 3. **跑兩個自動偵測器** — Hive + Reality Defender(影像);AI or Not(快速分流)。**意見分歧時升級**
 4. **逐 frame 與音訊分析** — 影片看邊界與唇同步;音訊看頻譜、呼吸、室內音
 5. **聯絡來源** — **直接聯絡是最高信心步驟**。C2PA 告訴你**誰簽**,但無法告訴你**誰目擊**
+6. **發布前降風險** — 深偽或疑似深偽素材不得原樣轉傳;必要引用時加明確標籤、模糊處理、縮短片段,並避免提供可再散播的原始檔。
+
+```markdown
+## 可疑媒體驗證輸出
+
+- 判斷:可確認 / 疑似 / 無法判定 / 不建議引用
+- 信心:高 / 中 / 低
+- 最早來源:
+- 已跑工具:
+- 直接來源回應:
+- 限制:
+- 報導處理:不嵌入原片 / 打馬賽克 / 標示深偽 / 僅文字描述
+```
 
 ---
 
@@ -604,7 +647,7 @@ def archive_url(url: str, perma_cc_api_key: str | None = None) -> dict:
 - **自己為對話之一方**:多數實務見解認為**不構成「無故」竊錄**(類似美國 one-party consent),但建議**告知對方錄音**
 - **第三人對話**:**未經同意錄影/錄音可能觸犯**,即使在公共場所
 - **進入私人空間**:不可未經同意進入採訪
-- **詳細錄音法律請參考 `interview-prep-tw`**(本 plugin 將來在地化項目)
+- **詳細錄音法律請參考 `interview-prep-tw`**
 
 ### 《個人資料保護法》
 
@@ -673,7 +716,7 @@ def archive_url(url: str, perma_cc_api_key: str | None = None) -> dict:
 | 受訪者背景查證需要政府公開資料(財產申報、判決) | `foia-requests-tw` | (若公開資料無法取得時) §10 申請書 |
 | 寫成報導後文體有 AI 味 | `ai-writing-detox-tw` | §三、§六.新聞文體禁忌 |
 | 寫成報導後編務細節(深偽案號、機構名、人名譯名) | `newsroom-style-tw` | §一數字、§三人名譯名、§六機構名稱 |
-| 訪談前準備(尤其錄音法律) | `interview-prep-tw`(本 plugin 將來在地化) | 《通保法》《刑法》§315-1 |
+| 訪談前準備(尤其錄音法律) | `interview-prep-tw` | 《通保法》《刑法》§315-1 |
 
 ### 重疊處理(同問題多 skill 都有)
 
@@ -776,7 +819,7 @@ def archive_url(url: str, perma_cc_api_key: str | None = None) -> dict:
 
 **版本說明**
 
-- 版本:1.0.0
+- 版本:1.0.1
 - 截至:2026-05-28
 - 改寫自:upstream `journalism-core/source-verification` (jamditis/claude-skills-journalism)
 - 在地化重點:

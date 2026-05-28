@@ -4,6 +4,18 @@
 
 ---
 
+## [1.0.1] — 2026-05-28 — Skill risk guardrails
+
+### 變更
+
+- 補強 `source-verification-tw` 的 C2PA / AI 偵測工具時效核對、信心分級與深偽素材發布前降風險流程。
+- 補強 `social-media-intelligence-tw` 的平台 ToS 邊界、公開資料限制、協同操作結論分級與報告最低輸出格式。
+- 補強 `foia-requests-tw` 的申請前決策流程、行政法人 / 境外申請人 / 民間受託單位等高風險邊界提醒。
+- 補強 `story-pitch-tw` 的投稿資訊更新規則、媒體選擇輸出格式與稿費不保證提醒。
+- 更新 validator,檢查 skill 檔內 stale future-localization 文字、舊 TODO heading 與已知 typo。
+
+---
+
 ## [1.0.0] — 2026-05-28 — **Stable / Production-ready**
 
 ### 里程碑

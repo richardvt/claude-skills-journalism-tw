@@ -1073,7 +1073,7 @@ description: 台灣媒體編務慣例與寫稿規範 (繁體中文/台灣專用�
 
 **版本說明**
 
-- 版本:1.0.0
+- 版本:1.0.1
 - v0.4.1 補強：新增英文職稱中譯對照表。
 - 截至:2026-05-27
 - 改寫自:upstream `journalism-core/newsroom-style` (jamditis/claude-skills-journalism),原版為**美國 AP Style**,**本版完全替換為台灣編務慣例**

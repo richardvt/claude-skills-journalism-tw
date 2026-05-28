@@ -10,18 +10,21 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPECTED_VERSION = "1.0.0"
+EXPECTED_VERSION = "1.0.1"
 EXPECTED_SKILL_COUNT = 13
 
 PROHIBITED_PHRASES = {
     "4 大 IFCN 認證": "Do not describe all four LINE fact-checking sources as IFCN-certified.",
     "將來會在地化": "The plugin README should not contain a stale future-localization section.",
-    "待翻譯/改寫中": "The repo is v1.0.0 complete; contribution docs should not point to old TODO status.",
+    "待翻譯/改寫中": "The repo is complete; contribution docs should not point to old TODO status.",
     "journalism-core-tw v0.4.1": "The manual test suite title should track the current release.",
     "永久 5xx 拒絕": "Gmail enforcement wording should not overstate all failures as permanent 5xx.",
     "DMARC `p=quarantine` 或 `p=reject` 成為大量發信實質必要": (
         "Gmail's baseline bulk-sender DMARC requirement is still p=none."
     ),
+    "本 plugin 將來在地化": "Cross-skill references should not describe completed skills as future work.",
+    "已知尚待後續校對": "Released skills should use boundary guidance instead of stale TODO headings.",
+    "Initial Pulitzer": "Story-pitch funding references should not contain this typo.",
 }
 
 
@@ -95,7 +98,13 @@ def main() -> int:
         elif EXPECTED_VERSION not in version.group(1):
             errors.append(f"{path}: version line should include {EXPECTED_VERSION}, got {version.group(1).strip()!r}")
 
-    for path in [ROOT / "README.md", ROOT / "journalism-core-tw" / "README.md", ROOT / "TEST_SUITE.md"]:
+    prohibited_paths = [
+        ROOT / "README.md",
+        ROOT / "journalism-core-tw" / "README.md",
+        ROOT / "TEST_SUITE.md",
+        *skill_files,
+    ]
+    for path in prohibited_paths:
         text = path.read_text(encoding="utf-8")
         for phrase, reason in PROHIBITED_PHRASES.items():
             if phrase in text:
