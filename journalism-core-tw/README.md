@@ -13,7 +13,7 @@
 | **foia-requests-tw** | foia-requests | 台灣《政府資訊公開法》申請流程、9 款限制公開事由、訴願與行政訴訟救濟、申請書範本、18 則行政法院判決見解、政府資料平台 |
 | **ai-writing-detox-tw** | ai-writing-detox | 中文 AI 寫作 pattern (套語家族、中國大陸用語滲透、四字成語堆疊、新聞文體禁忌)、Before/After 對照、發稿前自我檢查清單 |
 | **newsroom-style-tw** | newsroom-style | 台灣編務慣例 (依教育部《重訂標點符號手冊》、行政院《公文書數字使用原則》);數字、日期時間、人名譯名 (兩岸譯名差異)、職稱、引號標點、機構地名、引述動詞、性別族群用語、兩岸關係用語、常見錯字 |
-| **fact-check-workflow-tw** | fact-check-workflow | 台灣查核生態 (4 大 IFCN 認證機構:台灣事實查核中心、MyGoPen、Cofacts、蘭姆酒吐司)、LINE 訊息查證、台灣資料來源、評等 6 級制、法律風險 (《刑法》§310、《社維法》§63)、常見假訊息類別 |
+| **fact-check-workflow-tw** | fact-check-workflow | 台灣查核生態 (IFCN 認證狀態須查證之專業查核機構、Cofacts 社群協作平台、蘭姆酒吐司與 LINE 訊息查證合作來源)、台灣資料來源、評等 6 級制、法律風險 (《刑法》§310、《社維法》§63)、常見假訊息類別 |
 | **source-verification-tw** | source-verification | SIFT、台灣社群平台帳號驗證 (Threads/PTT/Dcard/LINE/FB)、反向圖搜、C2PA、深偽偵測、台灣 2024 大選深偽案例 (賴清德/高嘉瑜)、DoubleThink Lab/IORG、訪談前公開資料查證、法律風險 (《選罷法》§104 加重深偽條款) |
 | **interview-prep-tw** | interview-prep | 採訪準備、5 必問/6 問句/4 訪談類型、**台灣錄音法律** (《刑法》§315-1、《通保法》§29 第 3 款、實務判決)、台灣媒體歸屬實務、**8 種特殊受訪對象** (政治人物、政務官、原民族長、移工、性平受害者、災難倖存者、兒少、加害人) |
 | **social-media-intelligence-tw** | social-media-intelligence | 跨平台監測 (16 平台)、帳號真實性、台灣協同操作偵測 (GoLaxy 案例)、敘事擴散鏈、DoubleThink Lab/IORG 研究方法、Bellingcat 工具集、法律風險 (§104 加重深偽、§358 入侵電腦) |
@@ -157,17 +157,6 @@
 - `foia-requests-tw`:稿件是否涉及向政府機關申請資料或提出訴願
 - `source-verification-tw`:稿件是否含**社群截圖、影像、影片、未經驗證之帳號發言、或匿名爆料來源**
 - `fact-check-workflow-tw`:稿件是否含**任何可被驗證為真/偽的事實主張**(評論文章只要引用事實就要查核)
-
-## 將來會在地化
-
-| Skill | 對應 upstream | 改寫重點 |
-|---|---|---|
-| crisis-communications-tw | crisis-communications | NCC、台灣社群擴散場景 |
-| data-journalism-tw | data-journalism | 政府開放資料平台、主計總處、台灣公開 API |
-| editorial-workflow-tw | editorial-workflow | 通用編務 (移除 AP Style 節點) |
-| interview-transcription-tw | interview-transcription | Whisper 中文模型 |
-| newsletter-publishing-tw | newsletter-publishing | 方格子等平台,Gmail 合規技術保留 |
-| story-pitch-tw | story-pitch | 報導者、天下、商周、READr 等台灣媒體 pitch |
 
 ## 安裝
 

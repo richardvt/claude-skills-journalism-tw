@@ -776,7 +776,7 @@ def archive_url(url: str, perma_cc_api_key: str | None = None) -> dict:
 
 **版本說明**
 
-- 版本:0.1.0
+- 版本:1.0.0
 - 截至:2026-05-28
 - 改寫自:upstream `journalism-core/source-verification` (jamditis/claude-skills-journalism)
 - 在地化重點:

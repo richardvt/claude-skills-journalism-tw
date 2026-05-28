@@ -98,8 +98,8 @@ _dmarc.yourdomain.com.  IN  TXT  "v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.
 
 ### 2025 年 11 月後的 Gmail 變化
 
-- **永久 5xx 拒絕**(原為 4xx 暫時退信):一旦觸發,**訊息直接丟失**,寄件者必須先修正才能再發
-- **DMARC `p=quarantine` 或 `p=reject` 成為大量發信實質必要**
+- Gmail 開始逐步加強執法;未符合要求的郵件可能進垃圾匣、暫時退信或永久拒收,實際狀態以 Google Postmaster Tools 與退信碼判讀
+- Gmail 對 bulk sender 的 DMARC 基線仍是至少 `p=none`;`p=quarantine` 或 `p=reject` 是穩定後的安全強化建議,不應寫成 Gmail 基線要求
 
 ---
 
@@ -262,7 +262,7 @@ _dmarc.yourdomain.com.  IN  TXT  "v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.
 
 **版本說明**
 
-- 版本:0.1.0 / 截至 2026-05-28
+- 版本:1.0.0 / 截至 2026-05-28
 - 改寫自 upstream `journalism-core/newsletter-publishing`
 - 在地化重點:加入方格子、PressPlay、Matters 等台灣本地平台;台灣訂閱媒體標竿(報導者、天下、商周、鏡週刊);台灣金流選擇(綠界、藍新、街口、LINE Pay);台灣《個資法》電子報相關規範
-- Gmail / Yahoo / Outlook 寄信合規部分為全球技術標準,沿用 upstream;2025/11 Gmail 永久 5xx 拒絕變化已納入
+- Gmail / Yahoo / Outlook 寄信合規部分為全球技術標準,沿用 upstream;2025/11 Gmail 加強執法變化已納入,但 DMARC policy 強度需以官方最新要求為準

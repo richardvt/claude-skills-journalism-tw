@@ -128,7 +128,7 @@ v1.0.0 已通過**乾淨環境端到端測試**（2026-05-28）：
 - Claude 動筆前會主動聲明會跑哪些 skill，並在工作流各階段明確 reference 對應 skill 名稱（例如「Layer 1 自審清單跑 ai-writing-detox-tw」），驗證 plugin 設計的「協作章節」交叉參照機制可運作
 - 在測試中，Claude 能結合 skill 內容與一般媒體實務知識，例如媒體商業壓力、寄信網域驗證（DKIM 與 From 對齊）、電子報開信時段等
 
-完整測試紀錄見 [`TEST_SUITE.md`](TEST_SUITE.md)。
+人工測試 prompt、pass 條件與回報格式見 [`TEST_SUITE.md`](TEST_SUITE.md);結構性檢查可用 `python3 scripts/validate_plugin_quality.py` 重跑。
 
 ## 已在地化 Skill（13 個 — **100% 完成**）
 
@@ -139,7 +139,7 @@ v1.0.0 已通過**乾淨環境端到端測試**（2026-05-28）：
 | `social-media-intelligence-tw` | social-media-intelligence | 16 個平台跨平台 OSINT、台灣協同操作偵測（GoLaxy 案例）、敘事擴散鏈、DoubleThink Lab/IORG 研究方法 |
 | `interview-prep-tw` | interview-prep | 台灣錄音法律（《刑法》§315-1、《通保法》§29 第 3 款）、8 種台灣特殊受訪對象 |
 | `interview-transcription-tw` | interview-transcription | 雅婷逐字稿、台/客/原民族語、Whisper large-v3、引語資料庫 |
-| `fact-check-workflow-tw` | fact-check-workflow | 台灣 4 大 IFCN 認證查核機構、LINE 訊息查證、評等 6 級制、法律風險（《刑法》§310、《社維法》§63） |
+| `fact-check-workflow-tw` | fact-check-workflow | 台灣主要查核來源、LINE 訊息查證、IFCN 認證狀態查證、評等 6 級制、法律風險（《刑法》§310、《社維法》§63） |
 | `ai-writing-detox-tw` | ai-writing-detox | 中文 AI 寫作 pattern、中國大陸用語滲透對照表 40+ 組、四字成語堆疊、新聞文體禁忌 |
 | `newsroom-style-tw` | newsroom-style | 教育部《重訂標點符號手冊》+ 行政院《公文書數字使用原則》、人名譯名（川普 vs 特朗普）、兩岸關係用語、常見錯字 |
 | `crisis-communications-tw` | crisis-communications | 11 種台灣常見危機類別、突發新聞時間軸 SOP、NCC 廣電法、災害現場記者安全、誤報更正模板 |
@@ -160,7 +160,7 @@ v1.0.0 已通過**乾淨環境端到端測試**（2026-05-28）：
 | **資訊公開** | FOIA（《Freedom of Information Act》）、5 U.S.C. § 552、州級 OPRA / FOIL | **《政府資訊公開法》**、§18 9 款豁免、訴願 → 行政訴訟、**18 則行政法院判決見解**（102 判 147 等） |
 | **新聞文體** | AP Style（美聯社風格）、大小寫規則（sentence case） | **教育部《重訂標點符號手冊》** + **行政院《公文書數字使用原則》**；全形標點、川普 vs 特朗普、兩岸關係用語 |
 | **社群平台** | X、Reddit、Facebook、Bluesky 為主 | **Threads、PTT、Dcard、LINE、FB、IG、YouTube、TikTok、微博、小紅書、抖音、WeChat** 等 16 個平台 |
-| **查核機構** | PolitiFact、Snopes、FactCheck.org；6 級 IFCN 評等 | **台灣事實查核中心、MyGoPen、Cofacts、蘭姆酒吐司**（4 大 IFCN 認證）+ **LINE 訊息查證** |
+| **查核機構** | PolitiFact、Snopes、FactCheck.org；6 級 IFCN 評等 | **台灣事實查核中心、MyGoPen**等 IFCN 狀態須查證之專業查核機構 + **Cofacts、蘭姆酒吐司、LINE 訊息查證**等合作/社群查核來源 |
 | **採訪法律** | 各州 one-party / two-party consent；RCFP Reporter's Recording Guide | **《刑法》§315-1**、**《通保法》§29 第 3 款**一方同意、台灣判決見解（北院 108 自字 51 號） |
 | **誹謗、散布謠言** | 美國《憲法第一修正案》、actual malice standard | **《刑法》§310 / §311**、**《社維法》§63 第 5 款散布謠言**、**《選罷法》§104 加重深偽條款** |
 | **資料來源** | data.gov、Census、SEC、FOIAonline | **data.gov.tw、立法院議事公報、監察院、審計部、政府電子採購網、公開資訊觀測站、主計總處** 等 19 個 |
@@ -254,7 +254,7 @@ cp -r claude-skills-journalism-tw/journalism-core-tw/skills/* ~/.claude/skills/
 **Claude 會做**：
 - 觸發 `fact-check-workflow-tw`：主張提取、6 級評等（正確 / 部分錯誤 / 事實釐清 / 錯誤 / 證據不足 / 未審查）
 - 觸發 `source-verification-tw`：若含影像/影片，反向圖搜 + 深偽偵測
-- 引用 4 大 IFCN 認證機構（台灣事實查核中心、MyGoPen、Cofacts、蘭姆酒吐司）
+- 引用台灣主要查核來源；若標示 IFCN 認證，須以 IFCN 官網當下狀態為準（Cofacts 屬社群協作平台，蘭姆酒吐司屬 LINE 訊息查證合作來源）
 - 提示法律風險（《刑法》§310 誹謗、《社維法》§63 散布謠言）
 
 ---
@@ -437,7 +437,7 @@ codex chat --system-prompt "$(cat ~/.claude/plugins/.../foia-requests-tw/SKILL.m
 
 每個 skill 都是一個獨立的 `skills/<name>/SKILL.md`。編輯流程：
 
-1. 確認你要在地化的 skill （參考上表「待翻譯/改寫中」）
+1. 確認你要更新的 skill 與影響範圍
 2. 對照 `~/.claude/plugins/marketplaces/claude-skills-journalism/journalism-core/skills/<name>/SKILL.md`
 3. 在本 repo 對應路徑撰寫繁中版本
 4. 更新本 README 之狀態表

@@ -251,6 +251,6 @@ description: 台灣新聞危機應變與突發新聞處理工作流程 (繁體�
 
 **版本說明**
 
-- 版本:0.1.0 / 截至 2026-05-28
+- 版本:1.0.0 / 截至 2026-05-28
 - 改寫自 upstream `journalism-core/crisis-communications`(jamditis/claude-skills-journalism)
 - 在地化重點:11 種台灣常見危機類別、各類危機之台灣官方求證來源、NCC 廣電法規範、台灣災害現場記者安全建議、台灣媒體誤報更正慣例

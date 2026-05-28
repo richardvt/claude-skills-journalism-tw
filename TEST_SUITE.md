@@ -1,4 +1,4 @@
-# journalism-core-tw v0.4.1 乾淨測試套件
+# journalism-core-tw v1.0.0 乾淨測試套件
 
 開**新 session**後複製整段 prompt 貼進去測試。每組測試後把 Claude 輸出貼回原 session(本 session)讓我們對照分析。
 
@@ -13,7 +13,9 @@
 
 1. 確認 cwd **不是** `/Users/vt_god/claude-skills-journalism-tw`(避免 Claude 因為「在 plugin repo 內」而提前讀 SKILL.md)
 2. 推薦 cwd:`~/Desktop`、`~/Documents`、`~/tmp` 等中性目錄
-3. 確認 plugin 已安裝(系統訊息中應該看得到 3 個 `journalism-core-tw:*` skill)
+3. 確認 plugin 已安裝(系統訊息中應該看得到 13 個 `journalism-core-tw:*` skill)
+
+> 本檔是人工端到端測試 prompt 與 pass 條件,不是自動化測試輸出。結構性檢查請跑 `python3 scripts/validate_plugin_quality.py`。
 
 ---
 
