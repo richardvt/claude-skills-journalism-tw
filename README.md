@@ -4,7 +4,11 @@
 
 改寫自 [jamditis/claude-skills-journalism](https://github.com/jamditis/claude-skills-journalism) 之 `journalism-core`。原 repo 內容以**美國新聞工作環境**為主(FOIA、AP Style、Gmail bulk sender、美國社群平台);本 repo 將其重點 skill 改寫為**台灣對應**的法規、媒體慣例、平台生態與法律框架。
 
-**目前 v0.8.0,完整 13 個 skill 全部在地化,共約 350 KB。**
+[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/richardvt/claude-skills-journalism-tw/releases/tag/v1.0.0)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Skills](https://img.shields.io/badge/skills-13%20%2F%2013-brightgreen)](#已在地化-skill13-個--100-完成)
+
+**v1.0.0 stable / production-ready — 13 個 skill 全部在地化,經乾淨環境端到端壓力測試,共約 350 KB。**
 
 ## 已在地化 Skill(13 個 — **100% 完成**)
 

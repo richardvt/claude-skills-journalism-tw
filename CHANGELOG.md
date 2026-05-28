@@ -1,7 +1,45 @@
 # Changelog
 
-所有重大變更皆記錄於此檔案。版本號採 [Semantic Versioning](https://semver.org/lang/zh-TW/) 之精神:
-**0.MINOR.PATCH** — 0.x 階段以 MINOR 標示新增 skill,PATCH 標示既有 skill 之修補。
+所有重大變更皆記錄於此檔案。版本號採 [Semantic Versioning](https://semver.org/lang/zh-TW/) 之精神。
+
+---
+
+## [1.0.0] — 2026-05-28 — **Stable / Production-ready**
+
+### 里程碑
+
+v0.8.0 完成 13 個 skill 全部在地化後,經**乾淨環境端到端壓力測試**,確認 plugin 達 production-ready 標準。正式發行 v1.0.0。
+
+### 壓力測試結果(乾淨 session,2026-05-28)
+
+| 測試 | 通過評等 |
+|---|---|
+| **Prompt 1**(安裝 + 13 skill 載入) | ✅ |
+| **Prompt 2**(突發新聞 / `crisis-communications-tw`) | A+ |
+| **Prompt 3**(投稿 pitch / `story-pitch-tw`) | A++ |
+| **Prompt 4**(完整工作流 / **13 skill 串接**) | A+++ |
+
+### 關鍵成功訊號
+
+1. **元認知級表現** — Claude 動筆前主動聲明「我先載入 X,然後綜合其他相關 skill」
+2. **跨 skill 主動 reference** — 在「Layer 1 自審清單」明確寫「跑 ai-writing-detox-tw 清理 AI 味」,證明 v0.4.0 設計的「協作章節」交叉參照在 Claude 視角真實生效
+3. **不誤觸發無關 skill** — `story-pitch-tw` 在內部工作流不誤觸、`crisis-communications-tw` 在非突發新聞不誤觸
+4. **超越 SKILL.md 的實務知識整合** — 「報導者沒餐飲業廣告壓力」「中央社、公視即時為對齊基準」「DKIM d= 與 From: 必須對齊」等 SKILL.md 未明寫但 Claude 自己會的台灣媒體實務
+5. **法律意識成熟** — 主動套用《政資法》§18-I-3、《刑法》§310/§315-1、《選罷法》§104、《社維法》§63
+
+### 變更
+
+- marketplace.json + plugin.json:0.8.0 → **1.0.0**
+- README 開頭:從「v0.8.0」改為「v1.0.0 stable / production-ready」
+- 描述加註「經乾淨環境端到端壓力測試」
+
+### 最終規模
+
+```
+13 個 skill (100% 完成)
+~350 KB,7,000+ 行
+涵蓋從 pitch → 發稿 → 訂閱發行之完整新聞生命週期
+```
 
 ---
 
