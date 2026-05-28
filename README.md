@@ -19,6 +19,35 @@
 - 跨平台 OSINT 與深偽偵測
 - 新聞產品 / 教育訓練 / 媒體素養工作坊
 
+## 新聞生命週期
+
+13 個 skill 涵蓋從**選題**到**發布後追蹤**之完整新聞生產流程:
+
+```mermaid
+flowchart LR
+  A[📝 選題 Pitch<br/>story-pitch-tw] --> B[📚 資料蒐集]
+  B --> B1[政資法申請<br/>foia-requests-tw]
+  B --> B2[OSINT 追蹤<br/>social-media-<br/>intelligence-tw]
+  B1 & B2 --> C[🔍 來源驗證<br/>source-verification-tw]
+  C --> D[🎤 採訪準備<br/>interview-prep-tw]
+  D --> E[📼 錄音轉錄<br/>interview-<br/>transcription-tw]
+  E --> F[✅ 事實查核<br/>fact-check-workflow-tw]
+  F --> G[🧹 去 AI 寫作味<br/>ai-writing-detox-tw]
+  G --> H[📰 編務校對<br/>newsroom-style-tw]
+  H --> I[🏛️ 三層審核<br/>editorial-<br/>workflow-tw]
+  I --> J[🚀 發布]
+  J --> K[📊 資料新聞<br/>data-journalism-tw]
+  J --> L[📧 電子報<br/>newsletter-<br/>publishing-tw]
+  J --> M[🚨 突發應變<br/>crisis-<br/>communications-tw]
+  K & L & M --> N[📈 KPI / 後續追蹤]
+
+  style A fill:#fef3c7
+  style J fill:#dcfce7
+  style N fill:#dbeafe
+```
+
+> 突發新聞情境(地震、食安、政治事件)會**跳過部分順序**,由 `crisis-communications-tw` 主導,並在前 15 分鐘內整合 `fact-check-workflow-tw` + `source-verification-tw` 做快速查證。
+
 ## 重要聲明
 
 本 repo 內容**僅供新聞工作、編輯流程、查核流程與資料蒐集參考,不構成法律意見**。
@@ -78,6 +107,28 @@
 
 > 更多範例見 [`examples/`](examples/) 資料夾。
 
+## 測試狀態
+
+v1.0.0 已通過**乾淨環境端到端測試**(2026-05-28):
+
+| 測試項目 | 結果 |
+|---|---|
+| **plugin marketplace 安裝流程** | ✅ 通過 |
+| **13/13 skill 正確載入** | ✅ 通過 |
+| **與 upstream 英文版並存** | ✅ 通過(`-tw` 後綴無衝突) |
+| **單一 skill 觸發測試**(`foia-requests-tw`)| ✅ A+ |
+| **單一 skill 觸發測試**(`crisis-communications-tw`)| ✅ A+ |
+| **單一 skill 觸發測試**(`story-pitch-tw`)| ✅ A++ |
+| **多 skill 串接壓力測試**(13 skill 完整工作流)| ✅ A+++ |
+| **負向測試**(不該觸發時無誤觸發)| ✅ 通過 |
+
+**關鍵觀察**:
+- Claude **動筆前主動聲明會跑哪些 skill**(元認知級表現)
+- 「Layer 1 自審清單」明確 reference 對應 skill 名稱,證明 v0.4.0 設計的「協作章節」交叉參照真實生效
+- **超越 SKILL.md 的實務知識整合**(報導者沒餐飲業廣告壓力、DKIM 與 From 對齊、台灣訂戶開信高峰時段等 SKILL.md 沒寫的台灣媒體實務)
+
+完整測試紀錄見 [`TEST_SUITE.md`](TEST_SUITE.md)。
+
 ## 已在地化 Skill(13 個 — **100% 完成**)
 
 | Skill | 對應 upstream | 內容重點 |
@@ -98,6 +149,27 @@
 
 > 命名約定:本版 skill 一律加 `-tw` 後綴,可與 upstream 英文版**並存安裝**。
 > 13 個 skill 涵蓋從**選題 pitch → 資料蒐集 → 來源驗證 → OSINT → 採訪轉錄 → 查核 → 文體 → 編務 → 突發應變 → 資料新聞 → 電子報發行 → 編輯部管理**之**完整新聞生命週期**。
+
+## 與 upstream 英文版的主要差異
+
+本 repo 不只翻譯 — 是**完全替換為台灣對應的法規、機構、平台與媒體生態**。
+
+| 面向 | upstream(美國) | 本 repo(台灣) |
+|---|---|---|
+| **資訊公開** | FOIA(《Freedom of Information Act》)、5 U.S.C. § 552、州級 OPRA / FOIL | **《政府資訊公開法》**、§18 9 款豁免、訴願 → 行政訴訟、**18 則行政法院判決見解**(102 判 147 等) |
+| **新聞文體** | AP Style(美聯社風格)、大小寫規則(sentence case) | **教育部《重訂標點符號手冊》** + **行政院《公文書數字使用原則》**;全形標點、川普 vs 特朗普、兩岸關係用語 |
+| **社群平台** | X、Reddit、Facebook、Bluesky 為主 | **Threads、PTT、Dcard、LINE、FB、IG、YouTube、TikTok、微博、小紅書、抖音、WeChat** 等 16 個平台 |
+| **查核機構** | PolitiFact、Snopes、FactCheck.org;6 級 IFCN 評等 | **台灣事實查核中心、MyGoPen、Cofacts、蘭姆酒吐司**(4 大 IFCN 認證)+ **LINE 訊息查證** |
+| **採訪法律** | 各州 one-party / two-party consent;RCFP Reporter's Recording Guide | **《刑法》§315-1**、**《通保法》§29 第 3 款**一方同意、台灣判決見解(北院 108 自字 51 號) |
+| **誹謗、散布謠言** | 美國《憲法第一修正案》、actual malice standard | **《刑法》§310 / §311**、**《社維法》§63 第 5 款散布謠言**、**《選罷法》§104 加重深偽條款** |
+| **資料來源** | data.gov、Census、SEC、FOIAonline | **data.gov.tw、立法院議事公報、監察院、審計部、政府電子採購網、公開資訊觀測站、主計總處** 等 19 個 |
+| **投稿** | NYT、WaPo、ProPublica、The Intercept(美國媒體 pitch)| **報導者、天下、商周、READr、鏡週刊、聯合、自由、中時、INSIDE、關鍵評論網** 等 16 家台灣媒體 |
+| **深偽案例** | 美國選舉、Pope 假照 | **2024 台灣大選**:賴清德加密貨幣詐騙、賴清德藍白合變造(調查局 98.1%)、高嘉瑜 AI 仿聲、**GoLaxy 影響力作戰** |
+| **資訊作戰研究** | Stanford Internet Observatory(2024 解散)、Atlantic Council DFRLab | **台灣民主實驗室 DoubleThink Lab**、**IORG**(台灣資訊環境研究中心) |
+| **中文 AI 寫作味** | (英文版不適用) | **中文 AI 套語家族**(「值得我們深思」「不僅...更...」)+ **大陸用語滲透對照 40+ 組** |
+| **電子報技術合規** | Gmail/Yahoo/Outlook 2024-2026 規範(全球通用) | **保留**(全球通用)+ 加台灣訂閱媒體標竿、方格子等本地平台 |
+
+**結論**:約 **70-80% 的 skill 內容**為台灣場景重寫;其餘 20-30%(通用工具、方法論)沿用 upstream。
 
 ## 其他安裝方式
 
