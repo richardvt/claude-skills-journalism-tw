@@ -828,7 +828,7 @@ class SocialArchiver:
 
 **版本說明**
 
-- 版本:0.1.0
+- 版本:1.0.0
 - 截至:2026-05-28
 - 改寫自:upstream `journalism-core/social-media-intelligence` (jamditis/claude-skills-journalism)
 - 在地化重點:

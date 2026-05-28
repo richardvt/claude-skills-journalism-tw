@@ -1048,7 +1048,7 @@ description: 台灣《政府資訊公開法》與相關公開資料申請工作�
 
 **版本說明**
 
-- 版本:0.3.0 (試水溫,法條校對 + 重要判決見解整理完成)
+- 版本:1.0.0 (法條校對 + 重要判決見解整理完成)
 - v0.4.1 補強：新增政資法申請文件轉為新聞報導時的回流路徑。
 - 截至:2026-05-27
 - 改寫自:upstream `journalism-core/foia-requests` (jamditis/claude-skills-journalism)

@@ -845,7 +845,7 @@ AI 寫作偏好把動詞變名詞,讓文字「正式」起來:
 
 **版本說明**
 
-- 版本:0.1.0
+- 版本:1.0.0
 - 截至:2026-05-27
 - 改寫自:upstream `journalism-core/ai-writing-detox` (jamditis/claude-skills-journalism)
 - 完全替換 upstream 的英文 pattern (delve / tapestry / leverage) 為**中文 (繁中/台灣) AI 寫作 pattern**:

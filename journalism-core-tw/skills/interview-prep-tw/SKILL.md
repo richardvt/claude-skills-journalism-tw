@@ -678,7 +678,7 @@ PR 公關常代發言。**直接面對當事人**:
 
 **版本說明**
 
-- 版本:0.1.0
+- 版本:1.0.0
 - 截至:2026-05-28
 - 改寫自:upstream `journalism-core/interview-prep` (jamditis/claude-skills-journalism)
 - 在地化重點:
