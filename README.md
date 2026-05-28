@@ -1,8 +1,8 @@
 # claude-skills-journalism-tw
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)]（https://github.com/richardvt/claude-skills-journalism-tw/releases/tag/v1.0.0）
-[![License](https://img.shields.io/badge/license-MIT-green)]（LICENSE）
-[![Skills](https://img.shields.io/badge/skills-13%20%2F%2013-brightgreen)]（#已在地化-skill13-個--100-完成）
+[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/richardvt/claude-skills-journalism-tw/releases/tag/v1.0.0)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Skills](https://img.shields.io/badge/skills-13%20%2F%2013-brightgreen)](#已在地化-skill13-個--100-完成)
 
 **給台灣新聞工作者、編輯、查核員、自由記者使用的 Claude Code Plugin。**
 
@@ -77,12 +77,12 @@ flowchart LR
 ### 你貼給 Claude
 
 ```text
-這段新聞幫我去 AI 味,改成台灣媒體可發稿版本:
+這段新聞幫我去 AI 味，改成台灣媒體可發稿版本：
 
-在這個快速變遷的時代,食品安全議題值得我們深思。
-近期食藥署不僅優化了既有的稽查制度,更通過大數據與
-人工智能的深度結合,賦能每一位稽查員。值得我們深思
-的是,這項變革將如何重塑我們的食品安全生態。
+在這個快速變遷的時代，食品安全議題值得我們深思。
+近期食藥署不僅優化了既有的稽查制度，更通過大數據與
+人工智能的深度結合，賦能每一位稽查員。值得我們深思
+的是，這項變革將如何重塑我們的食品安全生態。
 ```
 
 ### Claude 抓出的問題（自動觸發 `ai-writing-detox-tw` + `newsroom-style-tw`）
@@ -128,7 +128,7 @@ v1.0.0 已通過**乾淨環境端到端測試**（2026-05-28）：
 - Claude 動筆前會主動聲明會跑哪些 skill，並在工作流各階段明確 reference 對應 skill 名稱（例如「Layer 1 自審清單跑 ai-writing-detox-tw」），驗證 plugin 設計的「協作章節」交叉參照機制可運作
 - 在測試中，Claude 能結合 skill 內容與一般媒體實務知識，例如媒體商業壓力、寄信網域驗證（DKIM 與 From 對齊）、電子報開信時段等
 
-人工測試 prompt、pass 條件與回報格式見 [`TEST_SUITE.md`](TEST_SUITE.md);結構性檢查可用 `python3 scripts/validate_plugin_quality.py` 重跑。
+人工測試 prompt、pass 條件與回報格式見 [`TEST_SUITE.md`](TEST_SUITE.md)；結構性檢查可用 `python3 scripts/validate_plugin_quality.py` 重跑。
 
 ## 已在地化 Skill（13 個 — **100% 完成**）
 
@@ -352,7 +352,7 @@ cp -r claude-skills-journalism-tw/journalism-core-tw/skills/* ~/.claude/skills/
 
 ```text
 用 foia-requests-tw 幫我寫向 NCC 申請某裁罰處分書的申請書
-用 foia-requests 幫我寫同樣需求 (英文版),我要比較兩版差異
+用 foia-requests 幫我寫同樣需求 （英文版），我要比較兩版差異
 ```
 
 ## 跨 plugin / 其他 AI 工具整合
@@ -362,9 +362,9 @@ cp -r claude-skills-journalism-tw/journalism-core-tw/skills/* ~/.claude/skills/
 本 plugin 可與其他 Claude Code plugin 串接，**最常見的搭配是 `codex:codex-rescue`**（作為「審稿夥伴」二次審查）：
 
 ```text
-1. Claude(載入 journalism-core-tw)寫稿、查核、編務
-2. 你說:「/codex:rescue 用第二意見審這篇稿子的法律風險與引語精準度」
-3. Codex(獨立 LLM)從第三方視角 review,降低單一 LLM 之 confirmation bias
+1. Claude（載入 journalism-core-tw）寫稿、查核、編務
+2. 你說：「/codex:rescue 用第二意見審這篇稿子的法律風險與引語精準度」
+3. Codex（獨立 LLM）從第三方視角 review，降低單一 LLM 之 confirmation bias
 ```
 
 **適用情境**：
