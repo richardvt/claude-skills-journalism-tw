@@ -1,6 +1,6 @@
 {
   "name": "claude-skills-journalism-tw",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Claude Code plugins for journalism, research, and media organizations — 繁體中文 / 台灣在地化版本",
   "owner": {
     "name": "bonjour@goskinow.co"
@@ -8,8 +8,8 @@
   "plugins": [
     {
       "name": "journalism-core-tw",
-      "description": "新聞工作核心技能的繁體中文/台灣在地化版本。改寫自 jamditis/claude-skills-journalism 的 journalism-core,將美國 FOIA、AP Style、Gmail 寄信規範等內容替換為台灣《政府資訊公開法》、台灣媒體編務慣例、與本地適用的合規要求。所有 skill 一律加 -tw 後綴,可與 upstream 英文版並存安裝、對照比較。目前已含 7 個 skill:foia-requests-tw、ai-writing-detox-tw、newsroom-style-tw、fact-check-workflow-tw、source-verification-tw、interview-prep-tw (採訪準備 + 台灣錄音法律 + 8 種特殊受訪對象)、social-media-intelligence-tw (跨平台 OSINT + 台灣協同操作偵測 + DoubleThink Lab/IORG 研究方法),其餘 skill 將陸續在地化。",
-      "version": "0.7.0",
+      "description": "新聞工作核心技能的繁體中文/台灣在地化版本。完整在地化 upstream journalism-core 的 13 個 skill。將美國 FOIA、AP Style、Gmail bulk sender、美國社群平台生態等內容替換為台灣《政府資訊公開法》、台灣媒體編務慣例、台灣社群平台、台灣法律框架。所有 skill 一律加 -tw 後綴,可與 upstream 英文版並存安裝。13 個 skill 涵蓋完整新聞生命週期:選題 pitch、資料蒐集、來源驗證、跨平台 OSINT、採訪準備與轉錄、事實查核、AI 寫作味去除、編務規範、突發新聞應變、資料新聞、編輯部管理、電子報發行。",
+      "version": "0.8.0",
       "author": {
         "name": "bonjour@goskinow.co"
       },
