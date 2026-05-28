@@ -8,7 +8,7 @@
 
 這是一組繁體中文 / 台灣在地化的 journalism skills，涵蓋政資法申請、事實查核、來源驗證、AI 味清理、台灣編務規範、採訪準備、逐字稿、資料新聞、電子報發行與投稿 pitch。
 
-> **致謝**：本 repo 改寫自 [Joe Amditis](https://github.com/jamditis) 的 [claude-skills-journalism](https://github.com/jamditis/claude-skills-journalism)，並針對台灣法規、媒體平台、查核機構與編務慣例**大幅重寫**（約 70–80% 內容為台灣場景重新撰寫，而非翻譯）。詳見「[與 upstream 英文版的主要差異](#與-upstream-英文版的主要差異)」。
+> **致謝**：本 repo 改寫自 [Joe Amditis](https://github.com/jamditis) 的 [claude-skills-journalism](https://github.com/jamditis/claude-skills-journalism)，並針對台灣法規、媒體平台、查核機構與編務慣例**大幅重寫**（約 70–80% 內容為台灣場景重新撰寫，而非翻譯）。詳見：[與 upstream 英文版的主要差異](#與-upstream-英文版的主要差異)。
 
 ## 適合用在
 
@@ -62,7 +62,7 @@ flowchart LR
 
 在 Claude Code 裡執行：
 
-```bash
+```text
 /plugin marketplace add richardvt/claude-skills-journalism-tw
 /plugin install journalism-core-tw@claude-skills-journalism-tw
 /reload-plugins
@@ -286,7 +286,7 @@ cp -r claude-skills-journalism-tw/journalism-core-tw/skills/* ~/.claude/skills/
 > 幫我設計第 0–15 分鐘的應變 SOP、第一稿模板、現場記者安全準則。
 
 **Claude 會做**：
-- 觸發 `crisis-communications-tw`:11 種台灣常見危機類別之 SOP、突發新聞時間軸（0–15 分 / 15–60 分 / 1–6 時 / 6–24 時）
+- 觸發 `crisis-communications-tw`：11 種台灣常見危機類別之 SOP、突發新聞時間軸（0–15 分 / 15–60 分 / 1–6 時 / 6–24 時）
 - 串接 `fact-check-workflow-tw` 處理 LINE 假訊息查證
 - 提示中央氣象署（非氣象局）為唯一官方來源
 - 災害現場記者安全準則（撤離條件、安全裝備、不擋救難動線）
@@ -376,8 +376,9 @@ cp -r claude-skills-journalism-tw/journalism-core-tw/skills/* ~/.claude/skills/
 
 本 plugin 主要設計為 Claude Code 環境之 skill，**但 SKILL.md 是純 markdown**，可作為一般 prompt 使用：
 
+直接把 `SKILL.md` 內容放進 Codex prompt：
+
 ```bash
-# 直接 cat SKILL.md 內容貼到 codex prompt
 codex chat --system-prompt "$(cat ~/.claude/plugins/.../foia-requests-tw/SKILL.md)" \
   "幫我寫一份政資法申請書..."
 ```
