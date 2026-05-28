@@ -64,17 +64,152 @@ cp -r claude-skills-journalism-tw/journalism-core-tw/skills/* ~/.claude/skills/
 
 > ✅ **可與 upstream 並存**:本版 skill 一律加 `-tw` 後綴 (例:`foia-requests-tw`),不會與 upstream 英文版 `foia-requests` 衝突。兩版本可同時安裝,用於對照比較或在不同場景觸發。Claude 會依語言 (中/英)、地名、機關名等線索自動挑選對應 skill;若想強制使用特定版本,可在 prompt 直接指明 (例:「用 foia-requests-tw 幫我寫」)。
 
-## 觸發方式
+## 典型使用情境(6 個常見場景)
 
-裝完後不必手動呼叫,Claude 會在你描述相關任務時自動使用對應 skill。範例:
+裝完後不必手動呼叫,Claude 會在你描述相關任務時自動使用對應 skill。以下是 6 種代表性使用場景。
 
-- 「幫我寫一份依政資法向衛福部食藥署申請某餐廳衛生稽查紀錄的申請書」→ 觸發 `foia-requests-tw`
-- 「機關以政資法 §18-I-3 拒絕我,怎麼辦?」→ 觸發 `foia-requests-tw`
-- 「draft a FOIA request to the FBI for X」→ 觸發 upstream `foia-requests` (英文版)
+### 1. 記者寫政資法申請書
+
+**情境**:你想向某政府機關取得文件,但不知道怎麼下筆。
+
+**對 Claude 說**:
+> 我要向衛福部食藥署申請過去 3 年某連鎖餐廳的衛生稽查紀錄。
+> 幫我寫一份政資法申請書,預先回應可能被以 §18 拒絕的理由,
+> 並準備若被拒絕的訴願主張。
+
+**Claude 會做**:
+- 觸發 `foia-requests-tw`
+- 產出:完整申請書(§10 五項應載項目)+ 預先回應 §18 各款 + 訴願主張要點 + 引用最高行政法院 5+ 則判決見解 + 建議同步寄地方衛生局
+
+---
+
+### 2. 編輯潤稿(去 AI 味 + 編務校對)
+
+**情境**:記者用 AI 起草了一段新聞,要改成可發稿。
+
+**對 Claude 說**:
+> 這段稿子幫我改成可發稿狀態,要去除 AI 味、改成台灣編務規範:
+>
+> [貼上稿件]
+
+**Claude 會做**:
+- 觸發 `ai-writing-detox-tw`:抓套語(「值得我們深思」「在這個...時代」)、大陸用語(視頻/網絡/賦能/打造)、設問句
+- 觸發 `newsroom-style-tw`:校對數字(阿拉伯/中文)、譯名(川普非特朗普)、職稱、引號標點、機構名簡稱
+- 產出:逐項標註問題 + 改寫後乾淨版本
+
+---
+
+### 3. 查核員查證 LINE 流傳訊息
+
+**情境**:LINE 群組轉傳一則健康/政治/兩岸假訊息,你要寫成查核報導。
+
+**對 Claude 說**:
+> LINE 群組轉傳這則訊息,幫我:
+> (1) 提取可查證主張並排優先級
+> (2) 設計查證計畫
+> (3) 評等(用台灣 6 級制)
+> (4) 寫成查核報導
+>
+> [貼上訊息]
+
+**Claude 會做**:
+- 觸發 `fact-check-workflow-tw`:主張提取、6 級評等(正確 / 部分錯誤 / 事實釐清 / 錯誤 / 證據不足 / 未審查)
+- 觸發 `source-verification-tw`:若含影像/影片,反向圖搜 + 深偽偵測
+- 引用 4 大 IFCN 認證機構(台灣事實查核中心、MyGoPen、Cofacts、蘭姆酒吐司)
+- 提示法律風險(《刑法》§310 誹謗、《社維法》§63 散布謠言)
+
+---
+
+### 4. 自由記者投稿提案
+
+**情境**:你有一個調查報導題目,想 pitch 給台灣媒體。
+
+**對 Claude 說**:
+> 我有個食安連鎖餐廳調查報導題目,幫我:
+> (1) 評估最適合 pitch 給哪 2-3 家台灣媒體
+> (2) 寫 pitch 信
+> (3) 估算稿費 + 採訪時間
+> (4) 簽合約注意事項
+
+**Claude 會做**:
+- 觸發 `story-pitch-tw`:從 16 家台灣主流媒體(報導者、READr、鏡週刊、商周、天下…)中挑選最適合的,並說明媒體商業壓力與議題契合度
+- 產出:完整 pitch 信(Hook / Why now / Stakes / Format 4 段結構)+ 稿費分項估算(主稿 + 視覺加成 + 採訪費)+ 8 點合約紅線(法律保護、線人保密、kill fee 等)
+- 主動轉手 `foia-requests-tw`(若需申請政府資料)
+
+---
+
+### 5. 災害現場記者(突發新聞 SOP)
+
+**情境**:剛發生地震/食安/火災/政治事件,你要做即時報導。
+
+**對 Claude 說**:
+> 花蓮外海剛發生規模 6.8 地震,LINE 已經開始流傳假災情。
+> 幫我設計第 0-15 分鐘的應變 SOP、第一稿模板、現場記者安全準則。
+
+**Claude 會做**:
+- 觸發 `crisis-communications-tw`:11 種台灣常見危機類別之 SOP、突發新聞時間軸(0-15 分 / 15-60 分 / 1-6 時 / 6-24 時)
+- 串接 `fact-check-workflow-tw` 處理 LINE 假訊息查證
+- 提示中央氣象署(非氣象局)為唯一官方來源
+- 災害現場記者安全準則(撤離條件、安全裝備、不擋救難動線)
+- NCC 廣電法注意事項(死傷畫面、家屬隱私)
+
+---
+
+### 6. 編輯主管做選題會議 + 完整工作流
+
+**情境**:你是編輯部主管,要規劃一篇深度資料新聞,從選題到電子報。
+
+**對 Claude 說**:
+> 我要做一篇「健保 2027 年是否真會崩潰」的深度資料新聞,
+> 從選題到電子報發行,幫我:
+> (1) 選題會議 / 製作週期
+> (2) 採訪規劃 + 錄音法律
+> (3) 該申請哪些政府資料
+> (4) 查證計畫
+> (5) 視覺化工具與圖表
+> (6) 三層審核流程
+> (7) 電子報推播 + Gmail 合規檢核
+> (8) 後續追蹤 KPI
+
+**Claude 會做**:
+- **同時串接 10+ 個 skill**:
+  - `editorial-workflow-tw`(選題、稿單、三層審核)
+  - `interview-prep-tw`(15 人 4 圈訪談名單、錄音法律)
+  - `foia-requests-tw`(政資法申請 + §18-I-3 預先準備)
+  - `fact-check-workflow-tw`(三源驗證、學者同儕審閱)
+  - `source-verification-tw`(存檔)
+  - `data-journalism-tw`(政府開放資料 + 視覺化工具)
+  - `ai-writing-detox-tw`(自審清理)
+  - `newsroom-style-tw`(數字、譯名、機構名)
+  - `newsletter-publishing-tw`(Gmail 合規 + 開信率)
+- 元認知:Claude 會在動筆前主動聲明「我先載入 X,再綜合相關 skill」
+
+---
+
+## 觸發方式速覽
+
+裝完後**不必手動指定 skill 名**,Claude 會依語言/地名/機關名/平台名自動挑選:
+
+| 你說... | Claude 觸發... |
+|---|---|
+| 政資法、訴願、政府申請 | `foia-requests-tw` |
+| LINE 假訊息、查核、評等 | `fact-check-workflow-tw` |
+| 反向圖搜、深偽、C2PA | `source-verification-tw` |
+| 跨平台、協同操作、水軍 | `social-media-intelligence-tw` |
+| 採訪、錄音、訪綱 | `interview-prep-tw` |
+| 逐字稿、Whisper、轉錄 | `interview-transcription-tw` |
+| AI 寫作味、大陸用語、套語 | `ai-writing-detox-tw` |
+| 數字寫法、人名譯名、編務 | `newsroom-style-tw` |
+| 突發新聞、地震、災害 | `crisis-communications-tw` |
+| 資料新聞、政府開放資料、視覺化 | `data-journalism-tw` |
+| 選題會議、稿單、編輯部 | `editorial-workflow-tw` |
+| 電子報、Gmail 合規、訂閱 | `newsletter-publishing-tw` |
+| Pitch、投稿、稿費、媒體 | `story-pitch-tw` |
+| Draft a FOIA request to FBI… | upstream `foia-requests`(英文版) |
 
 ### 強制指定特定版本
 
-若你想對照比較兩版本品質:
+若你想對照比較台灣版 vs 英文版品質:
 
 ```
 用 foia-requests-tw 幫我寫向 NCC 申請某裁罰處分書的申請書
