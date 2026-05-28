@@ -353,11 +353,83 @@ cp -r claude-skills-journalism-tw/journalism-core-tw/skills/* ~/.claude/skills/
 用 foia-requests 幫我寫同樣需求 (英文版),我要比較兩版差異
 ```
 
+## 跨 plugin / 其他 AI 工具整合
+
+### Claude Code 內跨 plugin 協作
+
+本 plugin 可與其他 Claude Code plugin 串接,**最常見的搭配是 `codex:codex-rescue`**(作為「審稿夥伴」二次審查):
+
+```text
+1. Claude(載入 journalism-core-tw)寫稿、查核、編務
+2. 你說:「/codex:rescue 用第二意見審這篇稿子的法律風險與引語精準度」
+3. Codex(獨立 LLM)從第三方視角 review,降低單一 LLM 之 confirmation bias
+```
+
+**適用情境**:
+- 重大調查報導發稿前法律審查
+- 涉妨害名譽風險之稿件
+- 引語對照逐字稿之精準度檢驗
+
+### Codex CLI 使用者
+
+本 plugin 主要設計為 Claude Code 環境之 skill,**但 SKILL.md 是純 markdown**,可作為一般 prompt 使用:
+
+```bash
+# 直接 cat SKILL.md 內容貼到 codex prompt
+codex chat --system-prompt "$(cat ~/.claude/plugins/.../foia-requests-tw/SKILL.md)" \
+  "幫我寫一份政資法申請書..."
+```
+
+或在 codex session 開頭手動貼上 SKILL.md 內容當作 context。
+
+**注意**:Codex 不會自動觸發、自動載入(這是 Claude Code 的 skill 系統獨有特性);Codex 使用者每次 session 都需手動載入需要的 SKILL.md 內容。
+
+### 其他 AI 工具(ChatGPT、Gemini)
+
+同理 — 可複製 SKILL.md 全文作為 system prompt 或對話開頭 context。但**沒有自動觸發機制**,每次都需手動。若 plugin 內容對你有用但你不用 Claude Code,**可考慮**:
+
+- Fork 本 repo,把 SKILL.md 整理為一份大 prompt
+- 用 Cursor、Continue 等支援 custom rules 之 IDE 載入
+
 ## 與 upstream 的關係
 
 - **授權**:upstream 為 MIT,本 repo 繼承同樣的 MIT 授權
 - **追蹤**:本 repo 不會自動同步 upstream 變更,但 upstream 重大更新會評估是否回灌
-- **回灌 upstream**:若部分 skill 之**通用部分**有改進 (非台灣特定內容),歡迎以 PR 形式提交至原 repo
+- **回灌 upstream**:若部分 skill 之**通用部分**有改進(非台灣特定內容),歡迎以 PR 形式提交至原 repo
+
+## 安全與隱私
+
+> 完整安全政策與漏洞回報管道見 [`SECURITY.md`](SECURITY.md)。
+
+### Plugin 本身
+
+- **不收集任何使用者資料**(無 telemetry、無 analytics)
+- **不呼叫外部 API**(SKILL.md 是純 markdown,Claude 只把它載入 context 作為文字參考)
+- **無執行時依賴**(SKILL.md 內的 Python code snippet 是範例,不會自動執行)
+
+### 給新聞工作者的使用安全提醒
+
+新聞工作者使用 AI 工具時,**比一般使用者多幾層責任**。本 plugin 不會自動保護你,以下事項請自行注意:
+
+| 場景 | 風險 | 建議做法 |
+|---|---|---|
+| **吹哨者、匿名線人身分** | 把姓名、職位、機關、聯絡方式輸入 LLM,線人身分可能被間接洩漏 | 一律用化名(○○○、A、B)、機關用「某中央部會」「某地方衛生局」 |
+| **進行中之具體案件** | 在 prompt 中描述案情細節,可能成為日後爭議之證據 | 涉訴訟、偵查中之案件:**只用大方向**請教 plugin,具體細節線下處理 |
+| **政資法申請書中之個資** | LLM 產出之申請書可能含真實個資;寄出前未核對就成正式公文 | 申請書**寄出前再次核對所有個資**(身分證、地址、案件描述) |
+| **引語精準度** | LLM 可能不自覺改寫、合併、簡化引語;這在新聞倫理上是禁忌 | 報導前**所有直接引語對照原始錄音逐字確認** |
+| **法律判斷** | LLM 提供的法條、判決見解可能過時或錯誤;不可作為訴訟依據 | 重大法律議題以**全國法規資料庫 + 律師意見**為準;plugin 僅為流程參考 |
+| **時效標記** | 法規、機關名稱、媒體投稿規範可能在 SKILL.md 撰寫後變動 | 每個 SKILL 結尾標「截至 YYYY-MM-DD」;**重要事項以最新公告為準** |
+| **跨平台 OSINT 倫理** | 把可疑帳號名單輸入 LLM,可能造成名單外洩或被誤指控 | 群體分析用化名 / hash;個別帳號**揭露前** 給對方回應機會 |
+| **未成年人、性平受害者** | LLM 不知何時該觸發「不揭露身分」原則 | 採訪兒少、性平受害者時,**用化名 + 模糊背景**請教 plugin |
+
+### 漏洞回報
+
+法條錯誤、SKILL.md 誤導、跨 plugin 衝突等問題,請依嚴重度回報:
+
+- **嚴重**(涉名譽傷害、可被立即濫用)→ email maintainer(標題 `[SECURITY]`)
+- **一般**(法條錯誤、過時資訊、機構名稱)→ [GitHub Issue](https://github.com/richardvt/claude-skills-journalism-tw/issues/new)
+
+詳見 [`SECURITY.md`](SECURITY.md)。
 
 ## 編輯與貢獻
 
