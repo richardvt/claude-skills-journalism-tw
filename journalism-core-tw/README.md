@@ -17,10 +17,16 @@
 | **source-verification-tw** | source-verification | SIFT、台灣社群平台帳號驗證 (Threads/PTT/Dcard/LINE/FB)、反向圖搜、C2PA、深偽偵測、台灣 2024 大選深偽案例 (賴清德/高嘉瑜)、DoubleThink Lab/IORG、訪談前公開資料查證、法律風險 (《選罷法》§104 加重深偽條款) |
 | **interview-prep-tw** | interview-prep | 採訪準備、5 必問/6 問句/4 訪談類型、**台灣錄音法律** (《刑法》§315-1、《通保法》§29 第 3 款、實務判決)、台灣媒體歸屬實務、**8 種特殊受訪對象** (政治人物、政務官、原民族長、移工、性平受害者、災難倖存者、兒少、加害人) |
 | **social-media-intelligence-tw** | social-media-intelligence | 跨平台監測 (16 平台)、帳號真實性、台灣協同操作偵測 (GoLaxy 案例)、敘事擴散鏈、DoubleThink Lab/IORG 研究方法、Bellingcat 工具集、法律風險 (§104 加重深偽、§358 入侵電腦) |
+| **interview-transcription-tw** | interview-transcription | 雅婷逐字稿、Whisper large-v3、台/客/原民族語、引語資料庫、引語精準度規則、檔案保存與銷毀 |
+| **crisis-communications-tw** | crisis-communications | 11 種台灣常見危機類別、突發新聞時間軸 SOP (0-15 分/15-60 分/1-6 時/6-24 時/24-72 時)、NCC 廣電法、災害現場記者安全、誤報更正模板 |
+| **data-journalism-tw** | data-journalism | 19 個台灣政府開放資料來源、台灣資料清理常見坑 (縣市改制、民國/西元、編碼)、Datawrapper/g0v 等視覺化工具、開放資料倫理 |
+| **editorial-workflow-tw** | editorial-workflow | 編輯部選題追蹤、稿單管理、台灣中型編輯部架構、紙本/網路/週刊/廣電差異、三層審核流程、新進記者訓練 |
+| **newsletter-publishing-tw** | newsletter-publishing | 方格子等台灣本地平台、Gmail/Yahoo/Outlook 寄信合規 (2024-2026)、台灣訂閱媒體標竿、《個資法》電子報規範 |
+| **story-pitch-tw** | story-pitch | 16 家台灣主流媒體投稿指南 (報導者、天下、商周、READr、鏡週刊、INSIDE、關鍵評論網 等)、稿費行情、自由工作者合約注意事項 |
 
 ## 典型記者工作流
 
-7 個 skill **互補不重疊**,串接使用最完整。寫一篇涉及政府資料的深度報導,典型流程:
+13 個 skill **互補不重疊**,涵蓋從**選題 pitch → 資料蒐集 → 來源驗證 → OSINT → 採訪轉錄 → 查核 → 文體 → 編務 → 突發應變 → 資料新聞 → 電子報發行 → 編輯部管理**之完整新聞生命週期。寫一篇涉及政府資料的深度報導,典型流程:
 
 ```
 ┌────────────────────────────────────────────────────────────┐
@@ -118,6 +124,19 @@
 - **深偽 / AI 生成內容**:以 `source-verification-tw` 為主(C2PA + 偵測工具 + §選罷法 §104);跨入查核評等再轉 `fact-check-workflow-tw`
 
 > 每個 SKILL.md 末尾有「**與其他 -tw skill 協作**」章節,有更詳細的轉手規則表。
+
+### v0.8.0 新增 6 個 skill 的定位
+
+| Skill | 何時用 | 與核心 5 skill 之關係 |
+|---|---|---|
+| `interview-prep-tw` | 採訪前準備、錄音同意 | 與 `fact-check-workflow-tw` 串接(訪後查核引語) |
+| `interview-transcription-tw` | 訪後轉錄、引語管理 | `interview-prep-tw` 的延伸 |
+| `social-media-intelligence-tw` | 跨平台 OSINT、協同操作偵測 | 與 `source-verification-tw` 互補(單帳號 vs 多帳號) |
+| `crisis-communications-tw` | 突發新聞應變(< 24 小時) | 整合 `fact-check-workflow-tw` 快速版 + `source-verification-tw` 快速驗證 |
+| `data-journalism-tw` | 資料新聞分析、視覺化 | 接續 `foia-requests-tw` 取得資料後 |
+| `editorial-workflow-tw` | 編輯部流程、選題、稿單 | **管理層 skill**,協調其他 skill 在編輯部運作 |
+| `newsletter-publishing-tw` | 電子報、訂閱媒體 | **發行層 skill**,接續寫稿 skill 後 |
+| `story-pitch-tw` | 對外投稿、題目提案 | **入口層 skill**,在採訪前 |
 
 ### 依稿件類型的決策樹
 

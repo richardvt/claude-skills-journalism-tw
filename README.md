@@ -4,33 +4,28 @@
 
 改寫自 [jamditis/claude-skills-journalism](https://github.com/jamditis/claude-skills-journalism) 之 `journalism-core`。原 repo 內容以**美國新聞工作環境**為主(FOIA、AP Style、Gmail bulk sender、美國社群平台);本 repo 將其重點 skill 改寫為**台灣對應**的法規、媒體慣例、平台生態與法律框架。
 
-**目前 v0.7.0,已在地化 7 個 skill,共約 290 KB。**
+**目前 v0.8.0,完整 13 個 skill 全部在地化,共約 350 KB。**
 
-## 已在地化 Skill(7 個)
+## 已在地化 Skill(13 個 — **100% 完成**)
 
 | Skill | 對應 upstream | 內容重點 |
 |---|---|---|
 | `foia-requests-tw` | foia-requests | 《政府資訊公開法》申請流程、9 款限制公開事由、訴願與行政訴訟救濟、申請書範本、18 則行政法院判決見解 |
+| `source-verification-tw` | source-verification | SIFT、C2PA、深偽偵測、台灣 2024 大選深偽真實案例、DoubleThink Lab/IORG、《選罷法》§104 加重深偽條款 |
+| `social-media-intelligence-tw` | social-media-intelligence | 16 個平台跨平台 OSINT、台灣協同操作偵測(GoLaxy 案例)、敘事擴散鏈、DoubleThink Lab/IORG 研究方法 |
+| `interview-prep-tw` | interview-prep | 台灣錄音法律(《刑法》§315-1、《通保法》§29 第 3 款)、8 種台灣特殊受訪對象 |
+| `interview-transcription-tw` | interview-transcription | 雅婷逐字稿、台/客/原民族語、Whisper large-v3、引語資料庫 |
+| `fact-check-workflow-tw` | fact-check-workflow | 台灣 4 大 IFCN 認證查核機構、LINE 訊息查證、評等 6 級制、法律風險(《刑法》§310、《社維法》§63) |
 | `ai-writing-detox-tw` | ai-writing-detox | 中文 AI 寫作 pattern、中國大陸用語滲透對照表 40+ 組、四字成語堆疊、新聞文體禁忌 |
 | `newsroom-style-tw` | newsroom-style | 教育部《重訂標點符號手冊》+ 行政院《公文書數字使用原則》、人名譯名(川普 vs 特朗普)、兩岸關係用語、常見錯字 |
-| `fact-check-workflow-tw` | fact-check-workflow | 台灣 4 大 IFCN 認證查核機構、LINE 訊息查證、評等 6 級制、法律風險(《刑法》§310、《社維法》§63) |
-| `source-verification-tw` | source-verification | SIFT、C2PA、深偽偵測、台灣 2024 大選深偽真實案例、DoubleThink Lab/IORG、《選罷法》§104 加重深偽條款 |
-| `interview-prep-tw` | interview-prep | 台灣錄音法律(《刑法》§315-1、《通保法》§29 第 3 款)、8 種台灣特殊受訪對象 |
-| `social-media-intelligence-tw` | social-media-intelligence | 16 個平台跨平台 OSINT、台灣協同操作偵測(GoLaxy 案例)、敘事擴散鏈、DoubleThink Lab/IORG 研究方法 |
-
-## 後續規劃(6 個)
-
-| Skill | 對應 upstream | 預計改寫重點 |
-|---|---|---|
-| `crisis-communications-tw` | crisis-communications | NCC、台灣社群擴散場景 |
-| `data-journalism-tw` | data-journalism | 政府開放資料平台、主計總處、台灣公開 API |
-| `editorial-workflow-tw` | editorial-workflow | 通用編務(移除 AP Style 節點) |
-| `interview-transcription-tw` | interview-transcription | Whisper 中文、台/客/原民族語 |
-| `newsletter-publishing-tw` | newsletter-publishing | 方格子等平台,Gmail 合規技術保留 |
-| `story-pitch-tw` | story-pitch | 報導者、天下、商周、READr、鏡週刊投稿格式 |
+| `crisis-communications-tw` | crisis-communications | 11 種台灣常見危機類別、突發新聞時間軸 SOP、NCC 廣電法、災害現場記者安全、誤報更正模板 |
+| `data-journalism-tw` | data-journalism | 19 個台灣政府開放資料來源、台灣資料清理常見坑(縣市改制、民國/西元、編碼)、Datawrapper/g0v 等視覺化工具 |
+| `editorial-workflow-tw` | editorial-workflow | 編輯部選題追蹤、稿單管理、台灣中型編輯部架構、紙本/網路/週刊/廣電差異、三層審核流程 |
+| `newsletter-publishing-tw` | newsletter-publishing | 方格子等台灣本地平台、Gmail/Yahoo/Outlook 寄信合規、台灣訂閱媒體標竿、《個資法》電子報規範 |
+| `story-pitch-tw` | story-pitch | 16 家台灣主流媒體投稿指南(報導者、天下、商周、READr、鏡週刊、INSIDE、關鍵評論網 等)、稿費行情、自由工作者合約注意事項 |
 
 > 命名約定:本版 skill 一律加 `-tw` 後綴,可與 upstream 英文版**並存安裝**。
-> 已在地化 7 個 skill 已涵蓋「資料蒐集 → 來源驗證 → OSINT → 採訪 → 查核 → 文體 → 編務」完整新聞工作流。
+> 13 個 skill 涵蓋從**選題 pitch → 資料蒐集 → 來源驗證 → OSINT → 採訪轉錄 → 查核 → 文體 → 編務 → 突發應變 → 資料新聞 → 電子報發行 → 編輯部管理**之**完整新聞生命週期**。
 
 ## 安裝方式
 
