@@ -1,14 +1,82 @@
 # claude-skills-journalism-tw
 
-新聞工作者用的 Claude Code plugin,**繁體中文 / 台灣在地化版本**。
-
-改寫自 [jamditis/claude-skills-journalism](https://github.com/jamditis/claude-skills-journalism) 之 `journalism-core`。原 repo 內容以**美國新聞工作環境**為主(FOIA、AP Style、Gmail bulk sender、美國社群平台);本 repo 將其重點 skill 改寫為**台灣對應**的法規、媒體慣例、平台生態與法律框架。
-
 [![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/richardvt/claude-skills-journalism-tw/releases/tag/v1.0.0)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-13%20%2F%2013-brightgreen)](#已在地化-skill13-個--100-完成)
 
-**v1.0.0 stable / production-ready — 13 個 skill 全部在地化,經乾淨環境端到端壓力測試,共約 350 KB。**
+**給台灣新聞工作者、編輯、查核員、自由記者使用的 Claude Code Plugin。**
+
+這是一組繁體中文 / 台灣在地化的 journalism skills,涵蓋政資法申請、事實查核、來源驗證、AI 味清理、台灣編務規範、採訪準備、逐字稿、資料新聞、電子報發行與投稿 pitch。
+
+## 適合用在
+
+- 編輯部日常出稿與校稿
+- 調查報導資料蒐集
+- LINE 假訊息查核
+- 台灣政府資料申請(政資法)
+- 自由記者投稿提案
+- 突發新聞應變 SOP
+- 跨平台 OSINT 與深偽偵測
+- 新聞產品 / 教育訓練 / 媒體素養工作坊
+
+## 重要聲明
+
+本 repo 內容**僅供新聞工作、編輯流程、查核流程與資料蒐集參考,不構成法律意見**。
+
+涉及《政府資訊公開法》、《個資法》、《刑法》、《選舉罷免法》、《通訊保障及監察法》等法律內容時,請以**全國法規資料庫**(law.moj.gov.tw)、**主管機關公告**與**專業法律意見**為準。
+
+各 skill 內容均附有「截至 YYYY-MM-DD」標記,但法規、平台政策、媒體投稿規範可能隨時變動。發稿前涉重大法律議題請洽律師或本社法務。
+
+## 30 秒快速安裝
+
+在 Claude Code 裡執行:
+
+```bash
+/plugin marketplace add richardvt/claude-skills-journalism-tw
+/plugin install journalism-core-tw@claude-skills-journalism-tw
+/reload-plugins
+```
+
+裝完後**不需要手動呼叫 skill**。直接用自然語言描述新聞任務,Claude 會自動選用對應的台灣版 skill。
+
+> 其他安裝方式(本機路徑 / 手動複製)見下方 [#安裝方式](#安裝方式) 章節。
+
+## Demo:AI 寫作味改寫前後
+
+### 你貼給 Claude
+
+```
+這段新聞幫我去 AI 味,改成台灣媒體可發稿版本:
+
+在這個快速變遷的時代,食品安全議題值得我們深思。
+近期食藥署不僅優化了既有的稽查制度,更通過大數據與
+人工智能的深度結合,賦能每一位稽查員。值得我們深思
+的是,這項變革將如何重塑我們的食品安全生態。
+```
+
+### Claude 抓出的問題(自動觸發 `ai-writing-detox-tw` + `newsroom-style-tw`)
+
+| 問題類型 | 原文 | 改寫方向 |
+|---|---|---|
+| AI 套語 | 「在這個快速變遷的時代」 | 刪除整句 |
+| AI 套語 | 「值得我們深思」(2 次) | 刪除 |
+| 三段套路 | 「不僅...更...」 | 拆兩句寫具體事實 |
+| 大陸用語 | 「通過」(透過意) | 改「**透過**」 |
+| 大陸用語 | 「人工智能」 | 改「**人工智慧**」 |
+| 大陸用語 | 「賦能」 | 改具體動作(「提供工具」) |
+| 大陸用語 | 「優化」(PR 場景) | 改「改善」 |
+| 名詞濫用 | 「食品安全生態」 | 改「食品安全環境」 |
+| 設問句 | 「將如何重塑...」 | 改陳述句或具體事實 |
+
+### Claude 改寫後
+
+> 食藥署 2026 年 5 月 27 日宣布,擴大 AI 輔助食安稽查;
+> 預計新增 80 個跨縣市稽查點,並導入影像辨識協助
+> 餐廳衛生查核。
+
+**從 4 行 AI 味文字** → **2 行具體事實**;通過台灣編務規範。
+
+> 更多範例見 [`examples/`](examples/) 資料夾。
 
 ## 已在地化 Skill(13 個 — **100% 完成**)
 
@@ -31,19 +99,11 @@
 > 命名約定:本版 skill 一律加 `-tw` 後綴,可與 upstream 英文版**並存安裝**。
 > 13 個 skill 涵蓋從**選題 pitch → 資料蒐集 → 來源驗證 → OSINT → 採訪轉錄 → 查核 → 文體 → 編務 → 突發應變 → 資料新聞 → 電子報發行 → 編輯部管理**之**完整新聞生命週期**。
 
-## 安裝方式
+## 其他安裝方式
 
-### 方法一(推薦):從 GitHub 安裝
+> 推薦的 30 秒安裝方式見上方 [#30-秒快速安裝](#30-秒快速安裝);以下為**離線、開發、或不想透過 marketplace 的進階使用者**之替代方法。
 
-在 Claude Code 中執行:
-
-```bash
-/plugin marketplace add richardvt/claude-skills-journalism-tw
-/plugin install journalism-core-tw@claude-skills-journalism-tw
-/reload-plugins
-```
-
-### 方法二:從本機路徑安裝(開發/離線)
+### 從本機路徑安裝(開發 / 離線)
 
 ```bash
 # 先 git clone
@@ -55,14 +115,16 @@ git clone https://github.com/richardvt/claude-skills-journalism-tw.git ~/claude-
 /reload-plugins
 ```
 
-### 方法三:手動複製 skill 到 ~/.claude/skills/
+### 手動複製 skill 到 ~/.claude/skills/
+
+不透過 plugin 系統,直接把 skill 檔丟到本機 Claude skills 目錄:
 
 ```bash
 git clone https://github.com/richardvt/claude-skills-journalism-tw.git
 cp -r claude-skills-journalism-tw/journalism-core-tw/skills/* ~/.claude/skills/
 ```
 
-> ✅ **可與 upstream 並存**:本版 skill 一律加 `-tw` 後綴 (例:`foia-requests-tw`),不會與 upstream 英文版 `foia-requests` 衝突。兩版本可同時安裝,用於對照比較或在不同場景觸發。Claude 會依語言 (中/英)、地名、機關名等線索自動挑選對應 skill;若想強制使用特定版本,可在 prompt 直接指明 (例:「用 foia-requests-tw 幫我寫」)。
+> ✅ **可與 upstream 英文版並存**:本版 skill 一律加 `-tw` 後綴(例:`foia-requests-tw`),不會與 upstream 英文版 `foia-requests` 衝突。兩版本可同時安裝,用於對照比較或在不同場景觸發。Claude 會依語言(中/英)、地名、機關名等線索自動挑選對應 skill;若想強制使用特定版本,在 prompt 直接指明:「用 foia-requests-tw 幫我寫」。
 
 ## 典型使用情境(6 個常見場景)
 
