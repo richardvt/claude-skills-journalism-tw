@@ -1,4 +1,4 @@
-# journalism-core-tw v1.0.0 乾淨測試套件
+# journalism-core-tw v1.0.1 乾淨測試套件
 
 開**新 session**後複製整段 prompt 貼進去測試。每組測試後把 Claude 輸出貼回原 session(本 session)讓我們對照分析。
 

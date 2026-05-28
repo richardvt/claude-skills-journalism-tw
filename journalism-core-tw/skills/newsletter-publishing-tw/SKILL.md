@@ -262,7 +262,7 @@ _dmarc.yourdomain.com.  IN  TXT  "v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.
 
 **版本說明**
 
-- 版本:1.0.0 / 截至 2026-05-28
+- 版本:1.0.1 / 截至 2026-05-28
 - 改寫自 upstream `journalism-core/newsletter-publishing`
 - 在地化重點:加入方格子、PressPlay、Matters 等台灣本地平台;台灣訂閱媒體標竿(報導者、天下、商周、鏡週刊);台灣金流選擇(綠界、藍新、街口、LINE Pay);台灣《個資法》電子報相關規範
 - Gmail / Yahoo / Outlook 寄信合規部分為全球技術標準,沿用 upstream;2025/11 Gmail 加強執法變化已納入,但 DMARC policy 強度需以官方最新要求為準

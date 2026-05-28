@@ -825,7 +825,7 @@ description: 台灣新聞事實查核工作流程 (繁體中文/台灣專用版,
 
 **版本說明**
 
-- 版本:1.0.0
+- 版本:1.0.1
 - 截至:2026-05-28
 - 改寫自:upstream `journalism-core/fact-check-workflow` (jamditis/claude-skills-journalism)
 - 在地化重點:

@@ -1,6 +1,6 @@
 # claude-skills-journalism-tw
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/richardvt/claude-skills-journalism-tw/releases/tag/v1.0.0)
+[![Version](https://img.shields.io/badge/version-1.0.1-blue)](https://github.com/richardvt/claude-skills-journalism-tw/releases/tag/v1.0.1)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-13%20%2F%2013-brightgreen)](#已在地化-skill13-個--100-完成)
 
@@ -111,7 +111,7 @@ flowchart LR
 
 ## 測試狀態
 
-v1.0.0 已通過**乾淨環境端到端測試**（2026-05-28）：
+v1.0.1 保留 v1.0.0 **乾淨環境端到端測試**基線,並新增結構性 quality checks（2026-05-28）：
 
 | 測試項目 | 結果 |
 |---|---|

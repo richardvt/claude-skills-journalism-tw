@@ -25,6 +25,14 @@ description: 台灣新聞社群媒體情報與 OSINT 工作流程 (繁體中文/
 - 為數位調查建立證據鏈
 - 在內容被刪除前**封存**
 
+### 使用邊界與 ToS guardrails
+
+- 只處理**公開內容**或已取得明確授權的資料;私人群組、私訊、封閉社團需先經編輯 / 法務審查。
+- 不繞過登入、付費牆、CAPTCHA、robots、速率限制或平台明示禁止的存取方式。
+- 優先使用官方 API、研究存取、授權資料商或人工取樣;第三方工具需確認授權與資料來源。
+- 本 skill 的 Python 區塊是**資料結構與分析模式示例**,不是授權爬取任何平台的許可。
+- 報告中記錄資料取得方式、時間範圍、平台限制與 `last_checked` 日期。
+
 ---
 
 ## 一、台灣資訊作戰生態速覽
@@ -55,7 +63,7 @@ description: 台灣新聞社群媒體情報與 OSINT 工作流程 (繁體中文/
 
 ## 二、跨平台即時監測
 
-### Python:多平台貼文資料結構
+### Python/pseudocode:多平台貼文資料結構
 
 ```python
 from dataclasses import dataclass, field
@@ -161,6 +169,8 @@ class BreakingNewsDetector:
 
 ### 各平台研究存取狀態
 
+平台 API、研究資格、價格與禁止事項高頻變動。使用下表前先查官方 developer docs / ToS / researcher access 頁面,並在報告中註明 `last_checked` 日期;若無法確認,只做人工觀察或明確標示資料限制。
+
 | 平台 | 研究存取 | 注意事項 |
 |---|---|---|
 | **Threads** | Threads API(發布/嵌入);Meta Content Library(研究批次)|2026 年 3 月公開檔案門檻降至 100 追蹤者;歷史研究需 Meta CL 學術資格 |
@@ -199,7 +209,7 @@ class BreakingNewsDetector:
 
 ## 四、帳號真實性分析
 
-### Python:真實性指標
+### Python/pseudocode:真實性指標
 
 ```python
 from dataclasses import dataclass, field
@@ -272,7 +282,7 @@ class AccountAnalysis:
 
 ## 五、網絡分析
 
-### Python:帳號互動網絡
+### Python/pseudocode:帳號互動網絡
 
 ```python
 from collections import defaultdict
@@ -340,7 +350,7 @@ class AccountNetwork:
 
 ## 六、敘事追蹤
 
-### Python:主張擴散追蹤
+### Python/pseudocode:主張擴散追蹤
 
 ```python
 from dataclasses import dataclass, field
@@ -451,7 +461,18 @@ class Claim:
 - [ ] 同一張(疑似 AI 生成)的人像或寵物照在多帳號出現
 ```
 
-### Python:協同程度評分
+### 結論分級
+
+不要把分數直接寫成「水軍」或「網軍」。先依證據強度分級,並讓被點名帳號或組織有回應機會。
+
+| 等級 | 用語 | 最低證據 |
+|---|---|---|
+| 1 | 觀察到相似訊號 | 少量帳號、單一平台、尚無明確同步 |
+| 2 | 疑似協同 | 多帳號 + 時間 / 內容 / 網絡至少兩類訊號 |
+| 3 | 符合協同操作特徵 | 跨平台或多批帳號,方法可重現,有存檔證據 |
+| 4 | 可歸因之協同操作 | 具內部文件、資金流、平台下架報告或權威機構確認 |
+
+### Python/pseudocode:協同程度評分
 
 ```python
 from typing import List
@@ -520,7 +541,7 @@ def coordination_likelihood(posts: List[SocialPost]) -> dict:
 
 > 完整存檔工作流見 `source-verification-tw` §十。
 
-### Python:雙重存檔(社群場景)
+### Python/pseudocode:雙重存檔(社群場景)
 
 ```python
 import re
@@ -620,6 +641,21 @@ class SocialArchiver:
 3. **用 g0v 公開工具**(如 Cofacts)查訊息已知擴散管道
 4. **找 DoubleThink Lab、IORG 已發表之相關研究**作為背景或引用
 5. **報導發出前對被指控的帳號或人物提出查證機會**
+
+```markdown
+## SMI 報告最低輸出格式
+
+- 研究問題:
+- 平台 / 關鍵字 / 帳號範圍:
+- 蒐集方法與授權狀態:
+- 時間範圍與 last_checked:
+- 樣本數與排除條件:
+- 主要訊號:
+- 結論分級:觀察到相似訊號 / 疑似協同 / 符合協同操作特徵 / 可歸因之協同操作
+- 限制:
+- 被點名方回應:
+- 發稿風險:
+```
 
 ---
 
@@ -828,7 +864,7 @@ class SocialArchiver:
 
 **版本說明**
 
-- 版本:1.0.0
+- 版本:1.0.1
 - 截至:2026-05-28
 - 改寫自:upstream `journalism-core/social-media-intelligence` (jamditis/claude-skills-journalism)
 - 在地化重點:
