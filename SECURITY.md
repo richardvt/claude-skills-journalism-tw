@@ -8,7 +8,7 @@
 
 ### 不收集任何使用者資料
 
-- 本 plugin 是**純文字 markdown 集合**(SKILL.md 檔案)
+- 本 plugin 是**純文字 markdown 集合**（SKILL.md 檔案）
 - **沒有 telemetry、analytics、追蹤碼**
 - **不呼叫任何外部 API**；不上傳檔案、不發送請求
 - 不存取使用者的：Claude API key、本機檔案系統（超出 plugin 安裝路徑）、瀏覽器、剪貼簿
@@ -21,11 +21,11 @@ Claude 用 SKILL.md + 一般知識回答你
 ```
 
 - SKILL.md 內容**只在你的 Claude session 內**作為 context
-- 你的 prompt 與回應**依循 Claude Code 自身的隱私政策**(由 Anthropic 處理），本 plugin 無權限介入
+- 你的 prompt 與回應**依循 Claude Code 自身的隱私政策**（由 Anthropic 處理），本 plugin 無權限介入
 
 ### SKILL.md 內容定位
 
-SKILL.md 內容**僅為文字參考**,**不構成**:
+SKILL.md 內容**僅為文字參考**，**不構成**：
 - 法律意見
 - 醫療建議
 - 投資建議
@@ -53,14 +53,14 @@ SKILL.md 內容**僅為文字參考**,**不構成**:
 
 | 嚴重度 | 管道 | 預期回應時間 |
 |---|---|---|
-| **嚴重**(立即可被濫用、有人格傷害風險) | 直接 email maintainer(repo owner 聯絡資訊)+ 標題 `[SECURITY]` | 48 小時內初步回應 |
-| **一般**(法條錯誤、過時資訊、SKILL.md 修正) | [開 GitHub Issue](https://github.com/richardvt/claude-skills-journalism-tw/issues/new) | 1 週內回應 |
-| **建議改進**(新增 skill、新功能) | GitHub Issue + label `enhancement` | 視情況 |
+| **嚴重**（立即可被濫用、有人格傷害風險） | 直接 email maintainer（repo owner 聯絡資訊）+ 標題 `[SECURITY]` | 48 小時內初步回應 |
+| **一般**（法條錯誤、過時資訊、SKILL.md 修正） | [開 GitHub Issue](https://github.com/richardvt/claude-skills-journalism-tw/issues/new) | 1 週內回應 |
+| **建議改進**（新增 skill、新功能） | GitHub Issue + label `enhancement` | 視情況 |
 
 ### 我們承諾
 
 - 嚴重議題**不公開揭露**直到修補完成
-- 回報者**列入致謝**(若願意)
+- 回報者**列入致謝**（若願意）
 - **不會**因為合理回報而對你採取法律行動
 - 修補後在 [CHANGELOG.md](CHANGELOG.md) 公開說明變更
 
@@ -72,9 +72,9 @@ SKILL.md 內容**僅為文字參考**,**不構成**:
 
 1. **吹哨者、匿名線人之身分資訊，不要丟給 LLM 處理**
 2. **政資法申請書中之敏感案件**：寄出前再次核對個資、機構、調查對象描述
-3. **引語必須對照原始錄音**(LLM 可能不自覺改寫引語)
-4. **法律相關內容請以全國法規資料庫與律師意見為準**,SKILL.md 僅為流程參考
-5. **時效**:SKILL.md 每份檔案結尾標「截至 YYYY-MM-DD」，法規/平台政策可能已變動
+3. **引語必須對照原始錄音**（LLM 可能不自覺改寫引語）
+4. **法律相關內容請以全國法規資料庫與律師意見為準**，SKILL.md 僅為流程參考
+5. **時效**：SKILL.md 每份檔案結尾標「截至 YYYY-MM-DD」，法規/平台政策可能已變動
 
 ---
 
@@ -84,8 +84,8 @@ SKILL.md 內容**僅為文字參考**,**不構成**:
 
 提交 PR 修改 SKILL.md 時：
 
-- ❌ **不要**在 SKILL.md 中放入**真實個人姓名、身分證、地址、電話**(範例請用「○○○」「王小明」)
-- ❌ **不要**引用**進行中之具體案件**(司法案件、調查中之新聞)
+- ❌ **不要**在 SKILL.md 中放入**真實個人姓名、身分證、地址、電話**（範例請用「○○○」「王小明」）
+- ❌ **不要**引用**進行中之具體案件**（司法案件、調查中之新聞）
 - ❌ **不要**直接複製其他媒體之版權內容（可摘要、可引用片段並標來源）
 - ✅ **請**在 PR 描述中說明：你修改的依據（法規條號、機關公告、學術論文等）
 - ✅ **請**在 PR 描述中標明：你引用之資料**截至 YYYY-MM-DD**
@@ -95,14 +95,14 @@ SKILL.md 內容**僅為文字參考**,**不構成**:
 | 變更類型 | 是否需在 CHANGELOG 標明 |
 |---|---|
 | 錯字、格式 | 不必 |
-| 法條條號修正 | **必須** + 標明依據（全國法規資料庫連結) |
-| 機構名稱變更（改制) | **必須** + 標明變更日期 |
+| 法條條號修正 | **必須** + 標明依據（全國法規資料庫連結） |
+| 機構名稱變更（改制） | **必須** + 標明變更日期 |
 | 加入新案例、新判決 | **必須** + 標明案號與來源 |
 | 整段大幅改寫 | **必須** + 標明改寫理由 |
 
 ### 安全相關 PR 之優先處理
 
-涉以下事項之 PR,**優先 review**:
+涉以下事項之 PR，**優先 review**：
 
 - 法條條號錯誤
 - 機構訴願管轄錯誤（會影響使用者實際救濟程序）
@@ -113,13 +113,13 @@ SKILL.md 內容**僅為文字參考**,**不構成**:
 
 ## 五、第三方依賴
 
-本 plugin **無任何執行時依賴**:
+本 plugin **無任何執行時依賴**：
 
-- 不需安裝 Python、Node.js 等 runtime(SKILL.md 內的 Python code snippet 僅為**範例**，不會被執行)
+- 不需安裝 Python、Node.js 等 runtime（SKILL.md 內的 Python code snippet 僅為**範例**，不會被執行）
 - 不引入 npm / pip 套件
 - 不依賴外部服務、CDN、image registry
 
-唯一「依賴」是 Claude Code(plugin 載入機制本身），本 plugin 不引入額外風險。
+唯一「依賴」是 Claude Code（plugin 載入機制本身），本 plugin 不引入額外風險。
 
 ---
 
