@@ -25,21 +25,21 @@
 
 ```mermaid
 flowchart LR
-  A[📝 選題 Pitch<br/>story-pitch-tw] --> B[📚 資料蒐集]
+  A[選題 Pitch<br/>story-pitch-tw] --> B[資料蒐集]
   B --> B1[政資法申請<br/>foia-requests-tw]
   B --> B2[OSINT 追蹤<br/>social-media-<br/>intelligence-tw]
-  B1 & B2 --> C[🔍 來源驗證<br/>source-verification-tw]
-  C --> D[🎤 採訪準備<br/>interview-prep-tw]
-  D --> E[📼 錄音轉錄<br/>interview-<br/>transcription-tw]
-  E --> F[✅ 事實查核<br/>fact-check-workflow-tw]
-  F --> G[🧹 去 AI 寫作味<br/>ai-writing-detox-tw]
-  G --> H[📰 編務校對<br/>newsroom-style-tw]
-  H --> I[🏛️ 三層審核<br/>editorial-<br/>workflow-tw]
-  I --> J[🚀 發布]
-  J --> K[📊 資料新聞<br/>data-journalism-tw]
-  J --> L[📧 電子報<br/>newsletter-<br/>publishing-tw]
-  J --> M[🚨 突發應變<br/>crisis-<br/>communications-tw]
-  K & L & M --> N[📈 KPI / 後續追蹤]
+  B1 & B2 --> C[來源驗證<br/>source-verification-tw]
+  C --> D[採訪準備<br/>interview-prep-tw]
+  D --> E[錄音轉錄<br/>interview-<br/>transcription-tw]
+  E --> F[事實查核<br/>fact-check-workflow-tw]
+  F --> G[去 AI 寫作味<br/>ai-writing-detox-tw]
+  G --> H[編務校對<br/>newsroom-style-tw]
+  H --> I[三層審核<br/>editorial-<br/>workflow-tw]
+  I --> J[發布]
+  J --> K[資料新聞<br/>data-journalism-tw]
+  J --> L[電子報<br/>newsletter-<br/>publishing-tw]
+  J --> M[突發應變<br/>crisis-<br/>communications-tw]
+  K & L & M --> N[KPI / 後續追蹤]
 
   style A fill:#fef3c7
   style J fill:#dcfce7
@@ -113,19 +113,18 @@ v1.0.0 已通過**乾淨環境端到端測試**(2026-05-28):
 
 | 測試項目 | 結果 |
 |---|---|
-| **plugin marketplace 安裝流程** | ✅ 通過 |
-| **13/13 skill 正確載入** | ✅ 通過 |
-| **與 upstream 英文版並存** | ✅ 通過(`-tw` 後綴無衝突) |
-| **單一 skill 觸發測試**(`foia-requests-tw`)| ✅ A+ |
-| **單一 skill 觸發測試**(`crisis-communications-tw`)| ✅ A+ |
-| **單一 skill 觸發測試**(`story-pitch-tw`)| ✅ A++ |
-| **多 skill 串接壓力測試**(13 skill 完整工作流)| ✅ A+++ |
-| **負向測試**(不該觸發時無誤觸發)| ✅ 通過 |
+| plugin marketplace 安裝流程 | 通過 |
+| 13/13 skill 正確載入 | 通過 |
+| 與 upstream 英文版並存 | 通過(`-tw` 後綴無衝突) |
+| `foia-requests-tw` 單一 skill 觸發 | 通過:正確產出政資法申請書與救濟路徑 |
+| `crisis-communications-tw` 單一 skill 觸發 | 通過:正確產出 0-15 分鐘應變 SOP |
+| `story-pitch-tw` 單一 skill 觸發 | 通過:正確產出媒體選擇、pitch 信、稿費估算 |
+| 13 skill 完整工作流串接 | 通過:可串接選題、查核、採訪、編務、發行流程 |
+| 負向測試(不該觸發時無誤觸發) | 通過 |
 
 **關鍵觀察**:
-- Claude **動筆前主動聲明會跑哪些 skill**(元認知級表現)
-- 「Layer 1 自審清單」明確 reference 對應 skill 名稱,證明 v0.4.0 設計的「協作章節」交叉參照真實生效
-- **超越 SKILL.md 的實務知識整合**(報導者沒餐飲業廣告壓力、DKIM 與 From 對齊、台灣訂戶開信高峰時段等 SKILL.md 沒寫的台灣媒體實務)
+- Claude 動筆前會主動聲明會跑哪些 skill,並在工作流各階段明確 reference 對應 skill 名稱(例如「Layer 1 自審清單跑 ai-writing-detox-tw」),驗證 plugin 設計的「協作章節」交叉參照機制可運作
+- 在測試中,Claude 能結合 skill 內容與一般媒體實務知識,例如媒體商業壓力、寄信網域驗證(DKIM 與 From 對齊)、電子報開信時段等
 
 完整測試紀錄見 [`TEST_SUITE.md`](TEST_SUITE.md)。
 
@@ -177,11 +176,15 @@ v1.0.0 已通過**乾淨環境端到端測試**(2026-05-28):
 
 ### 從本機路徑安裝(開發 / 離線)
 
-```bash
-# 先 git clone
-git clone https://github.com/richardvt/claude-skills-journalism-tw.git ~/claude-skills-journalism-tw
+先 git clone:
 
-# 在 Claude Code 中執行
+```bash
+git clone https://github.com/richardvt/claude-skills-journalism-tw.git ~/claude-skills-journalism-tw
+```
+
+在 Claude Code 中執行:
+
+```text
 /plugin marketplace add ~/claude-skills-journalism-tw
 /plugin install journalism-core-tw@claude-skills-journalism-tw
 /reload-plugins
